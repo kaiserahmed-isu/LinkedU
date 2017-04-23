@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit">Logout</button>
+    </form>
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Hello <span th:utext="${user.firstName}"></span>!
+            </div>
+
+            <p class="admin-message-text text-center" th:utext="${freeMemberMessage}"></p>
+
+            <div class="panel-body" th:if="${studentProfile}">
+                <span th:utext="${studentProfile.HS_name}"></span><br>
+                <span th:utext="${studentProfile.ged}"></span><br>
+                <span th:utext="${studentProfile.graduation_GED_date}"></span><br>
+                <span th:utext="${studentProfile.cgpa}"></span><br>
+
+            </div>
+
+            <br/>
+            <br/>
+            <div class="panel-body">
+            <form autocomplete="off" action="#" th:action="@{/student/profile}"
+                  th:object="${studentProfile}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Add/update Profile</h2>
+                <div class="form-group">
+                    <div class="col-sm-9"> Name
+                        <label th:if="${#fields.hasErrors('HS_name')}" th:errors="*{HS_name}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{HS_name}" placeholder="High School name"
+                               class="form-control" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-9"> GED
+                        <label	th:if="${#fields.hasErrors('ged')}" th:errors="*{ged}"
+                                  class="validation-message"></label>
+                        <select name="gender" th:field="*{ged}" class="form-control">
+                            <option value=""> -- -- </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9"> GED date
+                        <label	th:if="${#fields.hasErrors('graduation_GED_date')}" th:errors="*{graduation_GED_date}"
+                                  class="validation-message"></label>
+                        <input type="text" th:field="*{graduation_GED_date}"
+                               placeholder="Graduation date for GED/HighSchool" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9"> CGPA/Score
+                        <input type="text" th:field="*{cgpa}" placeholder="CGPA/Score"
+                               class="form-control" /> <label
+                            th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9"> ACT:
+                        <input type="text" th:field="*{ACT_score}" placeholder="ACT score"
+                               class="form-control" /> <label
+                            th:if="${#fields.hasErrors('ACT_score')}" th:errors="*{ACT_score}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+
+                <span th:utext="${successMessage}"></span>
+
+
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>
