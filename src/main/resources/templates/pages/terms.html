@@ -1,0 +1,198 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+
+        LinkedU - About Us
+
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link th:href="@{assets/css/application.css}" rel="stylesheet">
+
+        <style>
+            .row {
+                margin-left: 25px;
+                margin-right: 25px;
+                margin-top: 50px;
+            }
+            
+
+        </style>
+    </head>
+    <body class="with-top-navbar">
+    <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="Image/logo.jpg" alt="brand">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-collapse-main">
+
+                <ul class="nav navbar-nav hidden-xs">
+                    <li class="active">
+                        <a th:href="@{/}">Home</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/universities}">Universities</a>
+                    </li>
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/login}" >Login</a></li>
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a th:href="@{/registration-student}" >As Student</a>
+                            </li>
+                            <li class="divider">
+                            </li>
+                            <li>
+                                <a th:href="@{/registration-recruiter}" >As Recruiter</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+
+                    <li>
+                        <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+
+                        </button>
+                    </li>
+
+                </ul>
+
+                <form class="navbar-form navbar-right app-search" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                    </div>
+                </form>
+
+                <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                    <li><a th:href="@{/}">Home</a></li>
+
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+        <div style="margin-top:20px;" class="container-fluid">
+            <center><h1 style="color:blue;">Terms & Conditions</h1></center>
+            <div class="row">
+                <p>Following are the terms and conditions under which you may use the LinkedU Site ("Web Site"). 
+                    If you do not accept these Terms of Use, please do not use this web site and service. 
+                    By using this Web Site, you are indicating your acceptance of these Terms of Use, 
+                    including all terms and condition for the use of the Web Site. "LinkedU" may revise 
+                    these Terms and Conditions at any time by updating these Terms of Use as they are displayed on this web site. 
+                    We are not required to contact you prior to making any change to these Terms of Use. 
+                    You should visit this page periodically to review these Terms of Use, because they are binding on you. 
+                    The terms "You" and "User" as used herein refer to all individuals and/or entities accessing this 
+                    Web Site for any reason.</p>
+                <p>
+                    Welcome to LinkedU, an on-line service owned by LinkedU Inc. 
+                    that provides a variety of services to prospective University or Students, LinkedU allows prospective 
+                    university or students to create profiles, get matched with and recruited by universities, and learn about 
+                    application and other products and services that may be of interest to University or graduate school bound 
+                    students. In these Terms of Use (“Agreement”), This Agreement sets out the legally binding terms for your use 
+                    of the LinkedU Services. By using the LinkedU Services, you agree to be bound by this Agreement, whether you 
+                    are a "Visitor" (which means that you simply browse LinkedU.com) or you are a "Member" (which means that you 
+                    have registered with LinkedU.com as a student, a university, or a third party educational nonprofit including,
+                    but not limited to educational foundations, or another third party). The term "User" refers to a Visitor or a 
+                    Member. You are only authorized to use the LinkedU Services (regardless of whether your access or use is 
+                    intended) if you agree to abide by all applicable laws and this Agreement. Please read this Agreement 
+                    carefully and save it. If you do not agree with it, 
+                    you should leave the LinkedU Services and discontinue use of its Services immediately.
+                </p>
+                <p>LinkedU may modify this Agreement from time to time and such modifications shall be effective upon posting on the LinkedU Services. You agree to be bound by any changes to this Agreement when you use the ubergrad Services after any such modification is posted. It is therefore important that you review this Agreement regularly to ensure you are updated as to any changes.
+
+If you use this Site in a manner that requires you to set up an account with a user name and password, you are responsible for maintaining the confidentiality of that user name and password and for restricting access to your computer. You agree to accept all risk and responsibility for all activities that occur under your user name and password.</p>
+            </div>
+        </div>
+        
+        <div class="container-fluid panel-footer">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-2">
+                    <ul>
+                        <li>
+                            <a th:href="@{/about-us}">About Us</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/contact-us}">Contact Us</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/terms}">Terms & Condition</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/policies}">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-2">
+
+                    <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social"></i></a>
+                    <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+                    <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+                    <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <script th:src="@{assets/js/jquery.min.js}"></script>
+        <script th:src="@{assets/js/chart.js}"></script>
+        <script th:src="@{assets/js/toolkit.js}"></script>
+        <script th:src="@{assets/js/application.js}"></script>
+        <script>
+            // execute/clear BS loaders for docs
+            $(function () {
+                if (window.BS && window.BS.loader && window.BS.loader.length) {
+                    while (BS.loader.length) {
+                        (BS.loader.pop())()
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
