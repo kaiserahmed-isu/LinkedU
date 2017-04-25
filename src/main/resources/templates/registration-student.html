@@ -1,85 +1,421 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>LinkedU - Registration Form as a recruiter</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+
+    <title>
+
+        LinkedU
+
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link th:href="@{assets/css/application.css}" rel="stylesheet">
+
+    <style>
+
+        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+        /* this chunk of css is not part of the toolkit :) */
+        body {
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
+
+        /* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+        /* Carousel base class */
+        .carousel {
+            margin-bottom: 60px;
+        }
+
+        .carousel .container {
+            position: relative;
+            z-index: 9;
+        }
+
+        .carousel-control {
+            height: 80px;
+            margin-top: 0;
+            font-size: 120px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+            background-color: transparent;
+            border: 0;
+            z-index: 10;
+        }
+
+        .carousel .item {
+            height: 500px;
+        }
+
+        .carousel img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            height: 500px;
+        }
+
+        .carousel-caption {
+            background-color: transparent;
+            position: static;
+            max-width: 550px;
+            padding: 0 20px;
+            margin-top: 200px;
+        }
+
+        .carousel-caption h1,
+        .carousel-caption .lead {
+            margin: 0;
+            line-height: 1.25;
+            color: #fff;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+        }
+
+        .carousel-caption .btn {
+            margin-top: 10px;
+        }
+
+        /* MARKETING CONTENT
+        -------------------------------------------------- */
+
+        /* Center align the text within the three columns below the carousel */
+        .marketing h2 {
+            font-weight: normal;
+        }
+
+        .marketing .span4 p {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* RESPONSIVE CSS
+        -------------------------------------------------- */
+
+        @media (max-width: 979px) {
+
+            .container .navbar-wrapper {
+                margin-bottom: 20;
+                width: auto;
+            }
+
+            .carousel .item {
+                height: 500px;
+            }
+
+            .carousel img {
+                width: auto;
+                height: 500px;
+            }
+
+            .featurette {
+                height: auto;
+                padding: 0;
+            }
+
+            .featurette-image.pull-left,
+            .featurette-image.pull-right {
+                display: block;
+                float: none;
+                max-width: 40%;
+                margin: 0 auto 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            .navbar-inner {
+                margin: -20px;
+            }
+
+            .carousel {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
+            .carousel .container {
+
+            }
+
+            .carousel .item {
+                height: 300px;
+            }
+
+            .carousel img {
+                height: 300px;
+            }
+
+            .carousel-caption {
+                width: 65%;
+                padding: 0 70px;
+                margin-top: 100px;
+            }
+
+            .carousel-caption h1 {
+                font-size: 30px;
+            }
+
+            .carousel-caption .lead,
+            .carousel-caption .btn {
+                font-size: 18px;
+            }
+
+            .marketing .span4 {
+                margin-top: 40px;
+            }
+
+            .featurette .lead {
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+        }
+    </style>
 </head>
-<body>
-	<form th:action="@{/}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-	</form>	
-	
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<form autocomplete="off" action="#" th:action="@{/registration-student}"
-					th:object="${user}" method="post" class="form-horizontal"
-					role="form">
-					<h2>Register as a student</h2>
-					<div class="form-group">
-						<div class="col-sm-9">
-						<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
-								class="validation-message"></label>
-						<input type="text" th:field="*{firstName}" placeholder="First Name"
-								class="form-control" /> 
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-sm-9">
-						<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-								class="validation-message"></label>
-							<input type="text" th:field="*{lastName}"
-								placeholder="Last Name" class="form-control" /> 
-						</div>
-					</div>
+<body class="with-top-navbar">
+<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">
+                <img th:src="@{Image/logo.jpg}" alt="brand">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
-					<div class="form-group">
-						<div class="col-sm-9">
-							<label	th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
-									  class="validation-message"></label>
-							<select name="gender" th:field="*{gender}" class="form-control">
-								<option value=""> -- -- </option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
+            <ul class="nav navbar-nav hidden-xs">
+                <li class="active">
+                    <a href="/">Home</a>
+                </li>
+                <!-- <li>
+                     <a href="universityProfile/index.html">UniversityProfile</a>
+                 </li>
+                 <li>
+                     <a data-toggle="modal" href="#msgModal">Messages</a>
+                 </li>-->
+                <li>
+                    <a href="#">Universities</a>
+                </li>
+            </ul>
 
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-9">
-							<input type="text" th:field="*{email}" placeholder="Email"
-								class="form-control" /> <label
-								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-								class="validation-message"></label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-9">
-							<input type="password" th:field="*{password}"
-								placeholder="Password" class="form-control" /> <label
-								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-								class="validation-message"></label>
-						</div>
-					</div>
+            <ul class="nav navbar-nav navbar-right current">
+                <li><a th:href="@{/login}" >Login</a></li>
+            </ul>
 
-					<div class="form-group">
-						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Register as a Student</button>
-						</div>
-					</div>
-					
-					<span th:utext="${successMessage}"></span>
-					
-					
-				</form>
-			</div>
-		</div>
-	</div>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a th:href="@{/registration-student}" >As Student</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+                            <a th:href="@{/registration-recruiter}" >As Recruiter</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                <li>
+                    <a class="app-notifications" href="#">
+                        <span class="icon icon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+
+                    </button>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right app-search" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="universityProfile/index.html">Profile</a></li>
+                <li><a href="notifications/index.html">Notifications</a></li>
+                <li><a data-toggle="modal" href="#msgModal">Messages</a></li>
+                <li><a href="docs/index.html">Docs</a></li>
+                <li><a href="login/index.html">Logout</a></li>
+            </ul>
+
+            <!-- <ul class="nav navbar-nav navbar-right">
+                 <li>
+                 </li><li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                 <ul class="dropdown-menu">
+                 <ul class="dropdown-menu">
+                     <li>
+                         <a href="#">As Student</a>
+                     </li>
+                     <li class="divider">
+                     </li>
+                     <li>
+                         <a href="#">As Recruiter</a>
+                     </li>
+                 </ul>
+             </li>
+
+
+             </ul>
+
+
+
+
+             <ul class="nav navbar-nav">
+                 <li><a href="login/index.html">Login</a></li>
+             </ul>
+         </div>-->
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <h1>Register as a student</h1>
+    <form role="form" autocomplete="off" th:action="@{/registration-student}"
+          th:object="${user}" method="post" class="col-lg-6" >
+        <span th:utext="${successMessage}"></span><br>
+        <div class="row">
+            <div class="form-group">
+
+                <label for="firstName" class="form-group col-md-3 ">
+                    First name:
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                           class="validation-message"></span>
+                </label>
+                <input id="firstName" type="text" th:field="*{firstName}" placeholder="First Name"
+                       class="form-control col-md-6 "  required />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+
+                <label for="password" class="form-group col-md-3 ">
+                    Password:
+                </label>
+                <input type="password" class="form-control col-md-6" th:placeholder="Password"
+                       id="password" name="password"/>
+            </div>
+        </div>
+        <div class="row">
+            <div th:if="${param.error}" style="color: red;">
+                <p style="font-size: 20; color: #FF1C19;">* Email or Password invalid, please verify</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-3">
+                Log In
+            </button>
+
+            <a th:href="@{/forget-password}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Forgot Password?</a>
+        </div>
+
+
+
+
+
+        <!--<div class="checkbox">-->
+
+        <!--<label>-->
+        <!--<input type="checkbox" /> Remember me-->
+        <!--</label>-->
+        <!--</div>-->
+
+    </form>
+
+
+
+</div>
+
+
+<div th:fragment="footer" data-role="footer" class="container-fluid panel-footer" style="margin-top: 80px;">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2">
+            <ul>
+                <li>
+                    About Us
+                </li>
+                <li>
+                    Contact Us
+                </li>
+                <li>
+                    Terms & Condition
+                </li>
+                <li>
+                    Privacy Policy
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-2">
+
+            <a href="https://www.facebook.com/Linked-U-1673838479588563/"><i
+                    class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+            <a href="mailto:tinyshweta@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
+
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+
+
+</div>
+
+
+<script th:src="@{assets/js/jquery.min.js}"></script>
+<script th:src="@{assets/js/chart.js}"></script>
+<script th:src="@{assets/js/toolkit.js}"></script>
+<script th:src="@{assets/js/application.js}"></script>
+<script>
+    // execute/clear BS loaders for docs
+    $(function () {
+        if (window.BS && window.BS.loader && window.BS.loader.length) {
+            while (BS.loader.length) {
+                (BS.loader.pop())()
+            }
+        }
+    });
+</script>
 </body>
 </html>
