@@ -34,6 +34,7 @@
             *width: 100%;
         }
 
+<<<<<<< HEAD
         /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -183,6 +184,25 @@
             }
 
         }
+=======
+        .validation-message{
+            display: block;
+            color: red;
+            font-size: 10px;
+        }
+
+        .successMessage{
+            display: block;
+            color: #00cc00;
+            font-size: 16px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+
+        }
+
+
+
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
     </style>
 </head>
 
@@ -208,7 +228,11 @@
                     <a href="/">Home</a>
                 </li>
                 <!-- <li>
+<<<<<<< HEAD
                      <a href="universityProfile/index.html">UniversityProfile</a>
+=======
+                     <a href="profile/index.html">Profile</a>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
                  </li>
                  <li>
                      <a data-toggle="modal" href="#msgModal">Messages</a>
@@ -265,7 +289,11 @@
 
             <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
                 <li><a href="index.html">Home</a></li>
+<<<<<<< HEAD
                 <li><a href="universityProfile/index.html">Profile</a></li>
+=======
+                <li><a href="profile/index.html">Profile</a></li>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
                 <li><a href="notifications/index.html">Notifications</a></li>
                 <li><a data-toggle="modal" href="#msgModal">Messages</a></li>
                 <li><a href="docs/index.html">Docs</a></li>
@@ -304,6 +332,7 @@
 </nav>
 
 
+<<<<<<< HEAD
 <div class="container-fluid">
     <h1>Register as a student</h1>
     <form role="form" autocomplete="off" th:action="@{/registration-student}"
@@ -312,11 +341,21 @@
         <div class="row">
             <div class="form-group">
 
+=======
+<div class="container ">
+    <h1>Register as a student</h1>
+    <form role="form" autocomplete="off" th:action="@{/registration-student}"
+          th:object="${user}" method="post" class="col-lg-6" >
+        <span th:utext="${successMessage}" class="successMessage"></span><br>
+        <div class="row">
+            <div class="form-group">
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
                 <label for="firstName" class="form-group col-md-3 ">
                     First name:
                     <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
                            class="validation-message"></span>
                 </label>
+<<<<<<< HEAD
                 <input id="firstName" type="text" th:field="*{firstName}" placeholder="First Name"
                        class="form-control col-md-6 "  required />
 
@@ -346,16 +385,84 @@
             <a th:href="@{/forget-password}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Forgot Password?</a>
         </div>
 
+=======
+                <input id="firstName" type="text" th:field="*{firstName}" placeholder="Enter your first name"
+                       class="form-control col-md-6 "  required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="lastName" class="form-group col-md-3 ">
+                    Last name:
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                          class="validation-message"></span>
+                </label>
+                <input id="lastName" type="text" th:field="*{lastName}" placeholder="Enter your last name"
+                       class="form-control col-md-6 "  required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="firstName" class="form-group col-md-3 ">
+                    Gender:
+                    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
+                          class="validation-message"></span>
+                </label>
+                <select name="gender" th:field="*{gender}" class="form-control col-md-6" required>
+                    <option value=""> -- -- </option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="email" class="form-group col-md-3 ">
+                    Email:
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                          class="validation-message"></span>
+                </label>
+                <input id="email" type="email" th:field="*{email}" placeholder="Enter your email"
+                       class="form-control col-md-6 "  required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="password" class="form-group col-md-3 ">
+                    Password:
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                          class="validation-message"></span>
+                </label>
+                <input id="password" type="password" th:field="*{password}" placeholder="Enter your password"
+                       class="form-control col-md-6 "  required />
+            </div>
+        </div>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
 
 
 
 
+<<<<<<< HEAD
         <!--<div class="checkbox">-->
 
         <!--<label>-->
         <!--<input type="checkbox" /> Remember me-->
         <!--</label>-->
         <!--</div>-->
+=======
+        <br>
+        <div class="row">
+            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-3">
+                Register
+            </button>
+
+            <a th:href="@{/login}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Login</a>
+        </div>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
 
     </form>
 
