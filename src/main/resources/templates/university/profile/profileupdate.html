@@ -12,7 +12,7 @@
 
     <title>
 
-        Home &middot;
+        University Profile Update
 
     </title>
 
@@ -502,39 +502,72 @@
 
     <!-- progressbar -->
     <ul id="progressbar">
-        <li class="active">Account Setup</li>
-        <li>Social Profiles</li>
-        <li>Personal Details</li>
+        <li class="active">Basic details</li>
+        <li>Address details</li>
+        <li>Term Details</li>
     </ul>
     <!-- fieldsets -->
     <fieldset>
         <h2 class="fs-title">Add university profile info</h2>
-        <h3 class="fs-subtitle">This is step 1</h3>
+        <h3 class="fs-subtitle">Basic details</h3>
         <input type="text" name="name" placeholder="University name" th:field="*{university_name}">
         <input type="text" name="website" placeholder="website" th:value="*{website}">
         <input type="text" name="contact" placeholder="contact" th:value="*{contact}">
-        <input type="text" name="terms" placeholder="terms" th:value="*{terms}">
         <input type="button" name="next" class="next action-button" value="Next">
     </fieldset>
     <fieldset>
-        <h2 class="fs-title">Social Profiles</h2>
-        <h3 class="fs-subtitle">Your presence on the social network</h3>
+        <h2 class="fs-title"></h2>
+        <h3 class="fs-subtitle">Address details</h3>
         <input type="text" name="city" placeholder="city name" th:value="*{city}">
         <input type="text" name="state" placeholder="state name" th:value="*{state}">
         <input type="text" name="address" placeholder="address" th:value="*{address}">
+        <input type="text" name="zip" placeholder="zip" th:value="*{zip}">
         <input type="button" name="previous" class="previous action-button" value="Previous">
         <input type="button" name="next" class="next action-button" value="Next">
     </fieldset>
     <fieldset>
-        <h2 class="fs-title">Personal Details</h2>
-        <h3 class="fs-subtitle">We will never sell it</h3>
-        <input type="text" name="zip" placeholder="zip" th:value="*{zip}">
+        <h2 class="fs-title"></h2>
+        <h3 class="fs-subtitle">Terms</h3>
+        <input type="text" name="terms" placeholder="terms" th:value="*{terms}">
         <input type="button" name="previous" class="previous action-button" value="Previous">
         <button type="submit" name="submit" class="submit action-button">submit</button>
         <button>
         </button>
     </fieldset>
 </form>
+<div class="container-fluid panel-footer">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2">
+            <ul>
+                <li>
+                    <a th:href="@{/about-us}">About Us</a>
+                </li>
+                <li>
+                    <a th:href="@{/contact-us}">Contact Us</a>
+                </li>
+                <li>
+                    <a th:href="@{/terms}">Terms & Condition</a>
+                </li>
+                <li>
+                    <a th:href="@{/policies}">Privacy Policy</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-2">
+
+            <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+            <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
+
+        </div>
+    </div>
+</div>
+
 
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/js/chart.js}"></script>
