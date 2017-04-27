@@ -1,49 +1,378 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Admin Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+
+    <title>
+
+        LinkedU - Student Profile - Step 4
+
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link th:href="@{/assets/css/application.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/gsi-step-indicator.css}" rel="stylesheet">
+
+    <style>
+
+        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+        /* this chunk of css is not part of the toolkit :) */
+        body {
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
+
+
+        .validation-message{
+            display: block;
+            color: red;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .successMessage{
+            display: block;
+            color: #00cc00;
+            font-size: 16px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+
+        }
+        .bold-text{
+            font-weight: bold;
+        }
+
+        /* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+    </style>
+    <link rel="stylesheet" href="../../static/assets/css/gsi-step-indicator.css">
 </head>
 
-<body>
-<div class="container">
+<body class="with-top-navbar">
+<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/Image/logo.jpg}" alt="brand">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
-    <form th:action="@{/logout}" method="get">
-        <button class="btn btn-md btn-danger btn-block" name="registration"
-                type="Submit">Logout</button>
-    </form>
+            <ul class="nav navbar-nav hidden-xs">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Profile</a>
+                </li>
 
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
-            </div>
-            <div class="panel-body">
-                <img th:src="@{/images/beer.jpg}" class="img-responsive center-block" width="400" height="400" alt="Beer" />
-            </div>
-            <p class="admin-message-text text-center" th:utext="${memberMessage}"></p>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                <li >
+                    <a class="app-notifications" href="#">
+                        <span class="icon icon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                        <img class="img-circle" src="/assets/img/avatar-dhg.png">
+                    </button>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right app-search" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                <!--<li><a href="#">Home</a></li>-->
+                <li><a href="#">Profile</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav hidden">
+                <li><a th:href="@{/logout}" class="btn btn-md btn-primary col-md-10 col-md-offset-1" >Logout</a></li>
+            </ul>
         </div>
     </div>
+</nav>
+<div class="container p-t-md">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default panel-profile m-b-md">
+                <div class="panel-heading" style="background-image: url(/assets/img/iceland.jpg);"></div>
+                <div class="panel-body text-center">
+                    <a href="profile/index.html">
+                        <img
+                                class="panel-profile-img"
+                                src="/assets/img/avatar-dhg.png">
+                    </a>
 
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span>Purchase paid membership</span>
+                    <h5 class="panel-title">
+                        <a class="text-inherit" href="#"><span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span></a>
+                    </h5>
+
+                    <p class="m-b-md"></p>
+
+                    <ul class="panel-menu">
+                        <li class="panel-menu-item">
+
+                        </li>
+
+                        <li class="panel-menu-item">
+
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="panel-body">
-                <form th:action="@{/upgradeMember}" method="post">
-                    <button class="btn btn-md btn-danger btn-block" name="registration"
-                            type="Submit">Buy and Upgrade</button>
-                </form>
+
+            <div class="panel panel-default visible-md-block visible-lg-block">
+                <div class="panel-body">
+                    <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
+                    <ul class="list-unstyled list-spaced">
+                        <li><span class="text-muted icon icon-calendar m-r"></span>Hello, <span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span>! </li>
+                        <li><span class="text-muted icon icon-github m-r"></span>Email : <span th:utext="${user.email}"></span></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <ul class="list-group media-list media-list-stream">
+
+                <li class="media list-group-item p-a">
+                    <h5 class="m-t-0">EDUCATION <small> <a href="#">Edit</a></small></h5>
+                    <ul class="list-unstyled list-spaced">
+                        <li><span class="text-muted icon icon-book m-r"></span>Went to <span class="bold-text" th:utext="${studentProfile.HS_name}"></span></li>
+                        <li><span class="text-muted icon icon-calendar m-r"></span>Graduation Date: <span class="bold-text" th:text="${#dates.format(studentProfile.graduation_GED_date, 'dd-MMM-yyyy')}" ></span></li>
+                        <li><span class="text-muted icon icon-trophy m-r"></span>CGPA:  <span class="bold-text" th:utext="${studentProfile.cgpa}"></span></li>
+                        <li><span class="text-muted icon icon-star m-r"></span>ACT/GED:  <span class="bold-text" th:utext="${studentProfile.ACT_score}"></span></li>
+                    </ul>
+
+                </li>
+
+                <li class="media list-group-item p-a">
+
+                    <div class="media-body">
+                        <div class="media-heading">
+
+                            <h5>ACTIVITIES, HONORS, AWARDS:<small> <a href="#">Edit</a></small></h5>
+                        </div>
+
+
+
+                        <p>
+                        <table class="table table-bordered table-hover">
+                            <!--<tr>-->
+                                <!--<th>Type</th>-->
+                                <!--<th>Title</th>-->
+                                <!--<th>Details</th>-->
+                            <!--</tr>-->
+                            <tr th:each="activity:${studentActivities1}">
+                                <td th:text="${activity.activityType}"></td>
+                                <td><a href="#" th:text="${activity.activityTitle}"></a></td>
+                                <td th:text="${activity.activityDetails}"></td>
+                            </tr>
+                        </table>
+                        </p>
+
+
+                    </div>
+                </li>
+
+                <li class="media list-group-item p-a">
+
+                    <div class="media-body">
+                        <div class="media-body-text">
+                            <div class="media-heading">
+
+                                <h5>COMMUNITY SERVICE:<small> <a href="#">Edit</a></small></h5>
+                            </div>
+                            <p> <table class="table table-bordered table-hover">
+                            <!--<tr>-->
+                                <!--<th>Type</th>-->
+                                <!--<th>Title</th>-->
+                                <!--<th>Details</th>-->
+                            <!--</tr>-->
+                            <tr th:each="activity:${studentActivities2}">
+                                <td th:text="${activity.activityType}"></td>
+                                <td><a href="#" th:text="${activity.activityTitle}"></a></td>
+                                <td th:text="${activity.activityDetails}"></td>
+                            </tr>
+                        </table>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="media list-group-item p-a">
+
+                    <div class="media-body">
+                        <div class="media-body-text">
+                            <div class="media-heading">
+
+                                <h5>Uploaded Materials</h5>
+                            </div>
+
+                            <p>
+                            <table class="table table-bordered table-hover">
+                            <!--<tr>-->
+                            <!--<th>Type</th>-->
+                            <!--<th>Title</th>-->
+                            <!--<th>Details</th>-->
+                            <!--</tr>-->
+                            <tr th:each="material:${uploadMaterials}">
+                                <td th:text="${material.type}" colspan="2"></td>
+                                <td class="text-center"><a href="#"><img width="40px" height="40px" src="/Image/download.png"></a></td>
+
+                            </tr>
+                        </table>
+                            </p>
+
+                            <!-- Button trigger modal -->
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModalHorizontal">
+                                Upload a material
+                            </button>
+                            <span class="successMessage" th:utext="${successMessage}"></span>
+                            <span class="validation-message" th:utext="${messageError}"></span>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal">
+                                                <span aria-hidden="true">&times;</span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                Upload a material
+                                            </h4>
+                                        </div>
+
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+
+                                            <form class="form-horizontal" method="POST" th:action="@{/student/home}" enctype="multipart/form-data" role="form">
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label"
+                                                            for="type">Type of material: </label>
+
+                                                    <div class="col-sm-10">
+                                                        <select name="type" id="type" class="form-control">
+                                                            <option value=""> -- -- </option>
+                                                            <option value="Photo">Photo</option>
+                                                            <option value="Video">Video</option>
+                                                            <option value="Document">Document</option>
+
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="btn btn-default btn-file col-md-4 col-md-offset-3">
+                                                        <input type="file" name="file"  style="">
+                                                    </label>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <!--<button type="button" class="btn btn-primary">-->
+                                                <!--Save changes-->
+                                            <!--</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+
+
+            <div class="panel panel-default m-b-md hidden-xs">
+                <div class="panel-body">
+                    <h5 class="m-t-0">Featured University</h5>
+                    <div data-grid="images" data-target-height="150">
+                        <img class="media-object" data-width="640" data-height="640" data-action="zoom" src="/Image/isu.jpg">
+                    </div>
+                    <p><strong>Illinois State University</strong> <br>Illinois State University, founded in 1857 as Illinois State Normal University, is the oldest public university in Illinois and is located in Normal, Illinois</p>
+                    <button class="btn btn-primary-outline btn-sm">Apply Now</button>
+                </div>
+            </div>
+            <div class="panel panel-default panel-link-list">
+                <div class="panel-body">
+
+
+                    <a href="#">About</a>
+                    <a href="#">Help</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+
+                </div>
             </div>
         </div>
     </div>
-
 </div>
+
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/chart.js}"></script>
+<script th:src="@{/assets/js/toolkit.js}"></script>
+<script th:src="@{/assets/js/application.js}"></script>
+<script>
+    // execute/clear BS loaders for docs
+    $(function(){
+        if (window.BS&&window.BS.loader&&window.BS.loader.length) {
+            while(BS.loader.length){(BS.loader.pop())()}
+        }
+    })
+</script>
 </body>
 </html>

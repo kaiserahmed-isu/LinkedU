@@ -1,0 +1,295 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+
+    <title>
+
+        LinkedU - Student Profile - Step 4
+
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link th:href="@{/assets/css/application.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/gsi-step-indicator.css}" rel="stylesheet">
+
+    <style>
+
+        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+        /* this chunk of css is not part of the toolkit :) */
+        body {
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
+
+
+        .validation-message{
+            display: block;
+            color: red;
+            font-size: 10px;
+        }
+
+        .successMessage{
+            display: block;
+            color: #00cc00;
+            font-size: 16px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+
+        }
+
+        /* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+    </style>
+    <link rel="stylesheet" href="../../static/assets/css/gsi-step-indicator.css">
+</head>
+
+<body class="with-top-navbar">
+<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img th:src="@{Image/logo.jpg}" alt="brand">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-main">
+
+            <ul class="nav navbar-nav hidden-xs">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Profile</a>
+                </li>
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                <li >
+                    <a class="app-notifications" href="#">
+                        <span class="icon icon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                        <img class="img-circle" src="/assets/img/avatar-dhg.png">
+                    </button>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right app-search" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav hidden">
+                <li><a th:href="@{/logout}" class="btn btn-md btn-primary col-md-10  col-md-offset-1" >Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container p-t-md">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default panel-profile m-b-md">
+                <div class="panel-heading" style="background-image: url(/assets/img/iceland.jpg);"></div>
+                <div class="panel-body text-center">
+                    <a href="profile/index.html">
+                        <img
+                                class="panel-profile-img"
+                                src="/assets/img/avatar-dhg.png">
+                    </a>
+
+                    <h5 class="panel-title">
+                        <a class="text-inherit" href="#"><span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span></a>
+                    </h5>
+
+                    <p class="m-b-md"></p>
+
+                    <ul class="panel-menu">
+                        <li class="panel-menu-item">
+
+                        </li>
+
+                        <li class="panel-menu-item">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default visible-md-block visible-lg-block">
+                <div class="panel-body">
+                    <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
+                    <ul class="list-unstyled list-spaced">
+                        <li><span class="text-muted icon icon-calendar m-r"></span>Hello, <span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span>! </li>
+                        <li><span class="text-muted icon icon-github m-r"></span>Email : <span th:utext="${user.email}"></span></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <ul class="list-group media-list media-list-stream">
+
+                <li class="media list-group-item p-a">
+                    <h4 class="m-t-0">Upload resume </h4>
+
+                    <div class="tsf-nav-step">
+                        <!-- BEGIN STEP INDICATOR-->
+                        <ul class="gsi-step-indicator triangle gsi-style-1 gsi-transition">
+                            <li  data-target="step-1">
+                                <a href="#0">
+                                    <span class="desc">
+                                    <label>Step - </label>
+                                    <span></span>
+                                </span>
+                                    <span class="number">1</span>
+                                </a>
+                            </li>
+                            <li  data-target="step-2">
+                                <a href="#0">
+
+                                    <span class="desc">
+                                    <label>Step - </label>
+                                    <span></span>
+                                </span>
+                                    <span class="number">2</span>
+                                </a>
+                            </li>
+                            <li data-target="step-3">
+                                <a href="#0">
+
+                                    <span class="desc">
+                                    <label>Step - </label>
+                                    <span></span>
+                                </span>
+                                    <span class="number">
+                                    3
+                                </span>
+                                </a>
+                            </li>
+
+                            <li class="current" data-target="step-4">
+                                <a href="#0">
+
+                                    <span class="desc">
+                                    <label>Step - </label>
+                                    <span></span>
+                                </span>
+                                    <span class="number">
+                                    4
+                                </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- END STEP INDICATOR--->
+                    </div>
+                    <!-- END NAV STEP-->
+                    <!-- BEGIN STEP CONTAINER -->
+                    <!-- END STEP CONTAINER -->
+                    <form autocomplete="off"  th:action="@{/student/profile/step4}"
+                          enctype="multipart/form-data" method="post" class="form-horizontal "
+                          role="form">
+                        <p>Please upload your resume (pdf or doc/docx only)</p>
+
+                        <div class="form-group m-l-0">
+                            <label class="btn btn-default btn-file col-md-4 ">
+                                Browse your resume <input type="file" name="file"  style="">
+                            </label>
+                            <input type="hidden" id="type" name="type"  value="resume"
+                                   class="form-control" />
+                        </div>
+
+
+                        <div class="form-group m-l-0">
+                            <div class="col-sm-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary btn-block">Upload and Finish</button>
+                            </div>
+                        </div>
+
+                        <div th:if="${message}" class="validation-message">
+                            <h2 th:text="${message}"/>
+                        </div>
+
+                        <span class="successMessage" th:utext="${successMessage}"></span>
+
+                    </form>
+
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="col-md-3">
+
+
+            <div class="panel panel-default m-b-md hidden-xs">
+                <div class="panel-body">
+                    <h5 class="m-t-0">Featured University</h5>
+                    <div data-grid="images" data-target-height="150">
+                        <img class="media-object" data-width="640" data-height="640" data-action="zoom" src="/Image/isu.jpg">
+                    </div>
+                    <p><strong>Illinois State University</strong> <br>Illinois State University, founded in 1857 as Illinois State Normal University, is the oldest public university in Illinois and is located in Normal, Illinois</p>
+                    <button class="btn btn-primary-outline btn-sm">Apply Now</button>
+                </div>
+            </div>
+            <div class="panel panel-default panel-link-list">
+                <div class="panel-body">
+
+
+                    <a href="#">About</a>
+                    <a href="#">Help</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/chart.js}"></script>
+<script th:src="@{/assets/js/toolkit.js}"></script>
+<script th:src="@{/assets/js/application.js}"></script>
+<script>
+    // execute/clear BS loaders for docs
+    $(function(){
+        if (window.BS&&window.BS.loader&&window.BS.loader.length) {
+            while(BS.loader.length){(BS.loader.pop())()}
+        }
+    })
+</script>
+</body>
+</html>
