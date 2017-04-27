@@ -34,6 +34,157 @@
             *width: 100%;
         }
 
+<<<<<<< HEAD
+        /* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+        /* Carousel base class */
+        .carousel {
+            margin-bottom: 60px;
+        }
+
+        .carousel .container {
+            position: relative;
+            z-index: 9;
+        }
+
+        .carousel-control {
+            height: 80px;
+            margin-top: 0;
+            font-size: 120px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+            background-color: transparent;
+            border: 0;
+            z-index: 10;
+        }
+
+        .carousel .item {
+            height: 500px;
+        }
+
+        .carousel img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            height: 500px;
+        }
+
+        .carousel-caption {
+            background-color: transparent;
+            position: static;
+            max-width: 550px;
+            padding: 0 20px;
+            margin-top: 200px;
+        }
+
+        .carousel-caption h1,
+        .carousel-caption .lead {
+            margin: 0;
+            line-height: 1.25;
+            color: #fff;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+        }
+
+        .carousel-caption .btn {
+            margin-top: 10px;
+        }
+
+        /* MARKETING CONTENT
+        -------------------------------------------------- */
+
+        /* Center align the text within the three columns below the carousel */
+        .marketing h2 {
+            font-weight: normal;
+        }
+
+        .marketing .span4 p {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* RESPONSIVE CSS
+        -------------------------------------------------- */
+
+        @media (max-width: 979px) {
+
+            .container .navbar-wrapper {
+                margin-bottom: 20;
+                width: auto;
+            }
+
+            .carousel .item {
+                height: 500px;
+            }
+
+            .carousel img {
+                width: auto;
+                height: 500px;
+            }
+
+            .featurette {
+                height: auto;
+                padding: 0;
+            }
+
+            .featurette-image.pull-left,
+            .featurette-image.pull-right {
+                display: block;
+                float: none;
+                max-width: 40%;
+                margin: 0 auto 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            .navbar-inner {
+                margin: -20px;
+            }
+
+            .carousel {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
+            .carousel .container {
+
+            }
+
+            .carousel .item {
+                height: 300px;
+            }
+
+            .carousel img {
+                height: 300px;
+            }
+
+            .carousel-caption {
+                width: 65%;
+                padding: 0 70px;
+                margin-top: 100px;
+            }
+
+            .carousel-caption h1 {
+                font-size: 30px;
+            }
+
+            .carousel-caption .lead,
+            .carousel-caption .btn {
+                font-size: 18px;
+            }
+
+            .marketing .span4 {
+                margin-top: 40px;
+            }
+
+            .featurette .lead {
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+        }
+=======
         .validation-message{
             display: block;
             color: red;
@@ -51,6 +202,7 @@
 
 
 
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
     </style>
 </head>
 
@@ -76,7 +228,11 @@
                     <a href="/">Home</a>
                 </li>
                 <!-- <li>
+<<<<<<< HEAD
+                     <a href="universityProfile/index.html">UniversityProfile</a>
+=======
                      <a href="profile/index.html">Profile</a>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
                  </li>
                  <li>
                      <a data-toggle="modal" href="#msgModal">Messages</a>
@@ -133,7 +289,11 @@
 
             <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
                 <li><a href="index.html">Home</a></li>
+<<<<<<< HEAD
+                <li><a href="universityProfile/index.html">Profile</a></li>
+=======
                 <li><a href="profile/index.html">Profile</a></li>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
                 <li><a href="notifications/index.html">Notifications</a></li>
                 <li><a data-toggle="modal" href="#msgModal">Messages</a></li>
                 <li><a href="docs/index.html">Docs</a></li>
@@ -172,6 +332,16 @@
 </nav>
 
 
+<<<<<<< HEAD
+<div class="container-fluid">
+    <h1>Register as a student</h1>
+    <form role="form" autocomplete="off" th:action="@{/registration-student}"
+          th:object="${user}" method="post" class="col-lg-6" >
+        <span th:utext="${successMessage}"></span><br>
+        <div class="row">
+            <div class="form-group">
+
+=======
 <div class="container ">
     <h1>Register as a student</h1>
     <form role="form" autocomplete="off" th:action="@{/registration-student}"
@@ -179,11 +349,43 @@
         <span th:utext="${successMessage}" class="successMessage"></span><br>
         <div class="row">
             <div class="form-group">
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
                 <label for="firstName" class="form-group col-md-3 ">
                     First name:
                     <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
                            class="validation-message"></span>
                 </label>
+<<<<<<< HEAD
+                <input id="firstName" type="text" th:field="*{firstName}" placeholder="First Name"
+                       class="form-control col-md-6 "  required />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+
+                <label for="password" class="form-group col-md-3 ">
+                    Password:
+                </label>
+                <input type="password" class="form-control col-md-6" th:placeholder="Password"
+                       id="password" name="password"/>
+            </div>
+        </div>
+        <div class="row">
+            <div th:if="${param.error}" style="color: red;">
+                <p style="font-size: 20; color: #FF1C19;">* Email or Password invalid, please verify</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-3">
+                Log In
+            </button>
+
+            <a th:href="@{/forget-password}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Forgot Password?</a>
+        </div>
+
+=======
                 <input id="firstName" type="text" th:field="*{firstName}" placeholder="Enter your first name"
                        class="form-control col-md-6 "  required />
             </div>
@@ -239,10 +441,19 @@
                        class="form-control col-md-6 "  required />
             </div>
         </div>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
 
 
 
 
+<<<<<<< HEAD
+        <!--<div class="checkbox">-->
+
+        <!--<label>-->
+        <!--<input type="checkbox" /> Remember me-->
+        <!--</label>-->
+        <!--</div>-->
+=======
         <br>
         <div class="row">
             <button type="submit" class="btn btn-primary col-md-2 col-md-offset-3">
@@ -251,6 +462,7 @@
 
             <a th:href="@{/login}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Login</a>
         </div>
+>>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
 
     </form>
 
