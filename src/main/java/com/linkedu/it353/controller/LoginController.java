@@ -5,6 +5,12 @@ package com.linkedu.it353.controller;
  */
 import javax.validation.Valid;
 
+import com.linkedu.it353.model.StudentActivity;
+import com.linkedu.it353.model.StudentProfile;
+import com.linkedu.it353.model.UploadMaterials;
+import com.linkedu.it353.service.StudentActivityService;
+import com.linkedu.it353.service.StudentProfileService;
+import com.linkedu.it353.service.UploadMaterialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,16 +18,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.linkedu.it353.model.User;
 import com.linkedu.it353.service.UserService;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private StudentProfileService studentProfileService;
+
+    @Autowired
+    private StudentActivityService studentActivityService;
+
+    @Autowired
+    private UploadMaterialsService uploadMaterialsService;
+
+    private static String UPLOADED_FOLDER = "E://temp//";
 
 
 
@@ -90,10 +118,117 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("memberMessage","Content Available Only for Users with Student Member Role");
-        modelAndView.setViewName("member/home");
+
+        StudentProfile studentProfile = studentProfileService.findByUserId(user.getId());
+
+        modelAndView.addObject("user", user);
+        if (studentProfile != null) {
+            modelAndView.addObject("studentProfile", studentProfile);
+
+            List<String> activityTypes1 = Arrays.asList("Activity", "Award", "Honor");
+            List<StudentActivity> studentActivities1 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes1);
+            modelAndView.addObject("studentActivities1", studentActivities1);
+
+            List<String> activityTypes2 = Arrays.asList("Experience", "Community Service", "Extra-curricular");
+            List<StudentActivity>  studentActivityTypes2 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes2);
+            modelAndView.addObject("studentActivities2", studentActivityTypes2);
+
+            List<UploadMaterials> uploadMaterials = uploadMaterialsService.findByUserId(user.getId());
+            modelAndView.addObject("uploadMaterials", uploadMaterials);
+
+            modelAndView.setViewName("student/home");
+        }else {
+            return new ModelAndView("redirect:/student/profile");
+        }
+
         return modelAndView;
+    }
+
+
+    @RequestMapping(value="/student/home", method = RequestMethod.POST)
+    public ModelAndView singleFileUpload(@RequestParam("file") MultipartFile file,
+                                         @RequestParam("type") String type) {
+        ModelAndView modelAndView = new ModelAndView();
+
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+
+
+
+
+
+
+        if (file.isEmpty()) {
+            modelAndView.addObject("messageError", "Please select a file to upload");
+            modelAndView.setViewName("student/home");
+            return modelAndView;
+        }
+
+        String fileExtentions = ".jpeg,.png,.mp4,.jpg,.gif,.pdf,.doc,.docx";
+        int lastIndex = file.getOriginalFilename().lastIndexOf('.');
+        String substring = file.getOriginalFilename().substring(lastIndex, file.getOriginalFilename().length());
+
+        if (!fileExtentions.contains(substring)){
+            modelAndView.addObject("messageError", "Please upload only jpeg, png, mp4, jpg, gif, .pdf, .doc, .docx files");
+            modelAndView.setViewName("student/home");
+            return modelAndView;
+
+        }
+
+
+        try {
+
+            UploadMaterials uploadMaterials = new UploadMaterials();
+            uploadMaterials.setUserId(user.getId());
+            uploadMaterials.setType(type);
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+
+
+            String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(new Date())+ "_" +file.getOriginalFilename();
+
+            uploadMaterials.setFileType(file.getContentType());
+            uploadMaterials.setFileName(fileName);
+            Path path = Paths.get(UPLOADED_FOLDER + fileName);
+            Files.write(path, bytes);
+
+            uploadMaterialsService.saveUploadMaterials(uploadMaterials);
+
+
+            modelAndView.addObject("successMessage",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+            StudentProfile studentProfile = studentProfileService.findByUserId(user.getId());
+
+            modelAndView.addObject("user", user);
+
+            if (studentProfile != null) {
+                modelAndView.addObject("studentProfile", studentProfile);
+
+                List<String> activityTypes1 = Arrays.asList("Activity", "Award", "Honor");
+                List<StudentActivity> studentActivities1 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes1);
+                modelAndView.addObject("studentActivities1", studentActivities1);
+
+                List<String> activityTypes2 = Arrays.asList("Experience", "Community Service", "Extra-curricular");
+                List<StudentActivity>  studentActivityTypes2 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes2);
+                modelAndView.addObject("studentActivities2", studentActivityTypes2);
+
+                List<UploadMaterials> uploadMaterialsNew = uploadMaterialsService.findByUserId(user.getId());
+                modelAndView.addObject("uploadMaterials", uploadMaterialsNew);
+
+                modelAndView.setViewName("student/home");
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        modelAndView.setViewName("student/home");
+        return  modelAndView;
     }
 
 
@@ -116,6 +251,6 @@ public class LoginController {
         }
         return new ModelAndView(targetUrl);
     }
-    
+
 
 }

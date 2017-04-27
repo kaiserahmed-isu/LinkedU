@@ -1,6 +1,8 @@
 package com.linkedu.it353.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import javax.persistence.*;
@@ -29,7 +31,7 @@ public class StudentProfile {
 
 	private String ged;
 
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date graduation_GED_date;
 
 	@Column(name = "HS_name")

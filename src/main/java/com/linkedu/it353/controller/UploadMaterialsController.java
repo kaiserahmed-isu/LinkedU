@@ -44,19 +44,21 @@ public class UploadMaterialsController {
                                          @RequestParam("type") String type) {
         ModelAndView modelAndView = new ModelAndView();
 
-        String fileExtentions = ".jpeg,.png,.mp4,.jpg,.gif";
+        String fileExtentions = ".jpeg,.png,.mp4,.jpg,.gif,.pdf,.doc,.docx";
         int lastIndex = file.getOriginalFilename().lastIndexOf('.');
         String substring = file.getOriginalFilename().substring(lastIndex, file.getOriginalFilename().length());
 
         if (!fileExtentions.contains(substring)){
-            modelAndView.addObject("message", "Please upload only jpeg, png, mp4, jpg, gif files");
-            modelAndView.setViewName("upload");
-            return modelAndView;
+            modelAndView.addObject("messageError", "Please upload only jpeg, png, mp4, jpg, gif, .pdf, .doc, .docx files");
+            modelAndView.setViewName("student/home");
+            //return modelAndView;
+            return new ModelAndView("redirect:/student/home");
         }
         if (file.isEmpty()) {
-            modelAndView.addObject("message", "Please select a file to upload");
-            modelAndView.setViewName("upload");
-            return modelAndView;
+            modelAndView.addObject("messageError", "Please select a file to upload");
+            modelAndView.setViewName("student/home");
+            //return modelAndView;
+            return new ModelAndView("redirect:/student/home");
         }
 
         try {
@@ -82,14 +84,14 @@ public class UploadMaterialsController {
             uploadMaterialsService.saveUploadMaterials(uploadMaterials);
 
 
-            modelAndView.addObject("message",
+            modelAndView.addObject("successMessage",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        modelAndView.setViewName("upload");
-        return modelAndView;
+        //modelAndView.setViewName("student/home");
+        return new ModelAndView("redirect:/student/home");
     }
 
 
