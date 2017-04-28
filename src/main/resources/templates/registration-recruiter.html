@@ -332,45 +332,6 @@
 </nav>
 
 
-<<<<<<< HEAD
-<div class="container-fluid">
-    <h1>Register as a recruiter</h1>
-    <form role="form" th:action="@{/login}" method="POST"  class="col-lg-6" >
-        <span th:utext="${successMessage}"></span><br>
-        <div class="row">
-            <div class="form-group">
-
-                <label for="email" class="form-group col-md-3 ">
-                    Email address:
-                </label>
-                <input type="email" class="form-control col-md-6 " id="email" name="email"  th:placeholder="Email" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group">
-
-                <label for="password" class="form-group col-md-3 ">
-                    Password:
-                </label>
-                <input type="password" class="form-control col-md-6" th:placeholder="Password"
-                       id="password" name="password"/>
-            </div>
-        </div>
-        <div class="row">
-            <div th:if="${param.error}" style="color: red;">
-                <p style="font-size: 20; color: #FF1C19;">* Email or Password invalid, please verify</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-3">
-                Log In
-            </button>
-
-            <a th:href="@{/forget-password}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Forgot Password?</a>
-        </div>
-
-=======
 <div class="container ">
     <h1>Register as a recruiter</h1>
     <form role="form" autocomplete="off" th:action="@{/registration-recruiter}"
@@ -438,19 +399,7 @@
                        class="form-control col-md-6 "  required />
             </div>
         </div>
->>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
 
-
-
-
-<<<<<<< HEAD
-        <!--<div class="checkbox">-->
-
-        <!--<label>-->
-        <!--<input type="checkbox" /> Remember me-->
-        <!--</label>-->
-        <!--</div>-->
-=======
         <br>
         <div class="row">
             <button type="submit" class="btn btn-primary col-md-2 col-md-offset-3">
@@ -459,7 +408,6 @@
 
             <a th:href="@{/login}" class="btn btn-md btn-warning col-md-3  col-md-offset-1" >Login</a>
         </div>
->>>>>>> 0335795b61452ad85e4aec44b79838655fea3a31
 
     </form>
 
