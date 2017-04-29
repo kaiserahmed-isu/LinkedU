@@ -3,14 +3,11 @@ package com.linkedu.it353.controller;
 /**
  * Created by Kaiser Ahmed on 3/8/2017.
  */
+
 import javax.validation.Valid;
 
-import com.linkedu.it353.model.StudentActivity;
-import com.linkedu.it353.model.StudentProfile;
-import com.linkedu.it353.model.UploadMaterials;
-import com.linkedu.it353.service.StudentActivityService;
-import com.linkedu.it353.service.StudentProfileService;
-import com.linkedu.it353.service.UploadMaterialsService;
+import com.linkedu.it353.model.*;
+import com.linkedu.it353.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,14 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.linkedu.it353.model.User;
-import com.linkedu.it353.service.UserService;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +39,12 @@ public class LoginController {
     private StudentProfileService studentProfileService;
 
     @Autowired
+    private UniversityProfileService universityProfileService;
+
+    @Autowired
+    private UniversityProgramService universityProgramService;
+
+    @Autowired
     private StudentActivityService studentActivityService;
 
     @Autowired
@@ -52,17 +53,16 @@ public class LoginController {
     private static String UPLOADED_FOLDER = "E://temp//";
 
 
-
-    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
     }
 
 
-    @RequestMapping(value="/registration", method = RequestMethod.GET)
-    public ModelAndView registration(){
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
@@ -91,30 +91,45 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/admin/home", method = RequestMethod.GET)
-    public ModelAndView home(){
+    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
 
-    @RequestMapping(value="/recruiter/home", method = RequestMethod.GET)
-    public ModelAndView homeMember(){
+    @RequestMapping(value = "/recruiter/home", method = RequestMethod.GET)
+    public ModelAndView homeMember() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+        UniversityProfile universityProfile = universityProfileService.getUniversity(user.getId());
+        List<UniversityProgram> universityProgram = universityProgramService.getAllPrograms(user.getId());
+        modelAndView.addObject("user", user);
+        if (universityProfile != null) {
+            modelAndView.addObject("program", new UniversityProgram());
+            modelAndView.addObject("universityProfile", universityProfile);
+            modelAndView.addObject("universityProgram", universityProgram);
+            modelAndView.setViewName("university/profile/home");
+        }
+        else {
+            return new ModelAndView("redirect:/profileupdate");
+        }
+
+/*
         modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("memberMessage","Content Available Only for Users with Recruiter Member Role");
         modelAndView.setViewName("member/home");
+*/
         return modelAndView;
     }
 
-    @RequestMapping(value="/student/home", method = RequestMethod.GET)
-    public ModelAndView homestudent(){
+    @RequestMapping(value = "/student/home", method = RequestMethod.GET)
+    public ModelAndView homestudent() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
@@ -130,14 +145,14 @@ public class LoginController {
             modelAndView.addObject("studentActivities1", studentActivities1);
 
             List<String> activityTypes2 = Arrays.asList("Experience", "Community Service", "Extra-curricular");
-            List<StudentActivity>  studentActivityTypes2 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes2);
+            List<StudentActivity> studentActivityTypes2 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes2);
             modelAndView.addObject("studentActivities2", studentActivityTypes2);
 
             List<UploadMaterials> uploadMaterials = uploadMaterialsService.findByUserId(user.getId());
             modelAndView.addObject("uploadMaterials", uploadMaterials);
 
             modelAndView.setViewName("student/home");
-        }else {
+        } else {
             return new ModelAndView("redirect:/student/profile");
         }
 
@@ -145,19 +160,14 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value="/student/home", method = RequestMethod.POST)
+    @RequestMapping(value = "/student/home", method = RequestMethod.POST)
     public ModelAndView singleFileUpload(@RequestParam("file") MultipartFile file,
                                          @RequestParam("type") String type) {
         ModelAndView modelAndView = new ModelAndView();
 
 
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-
-
-
-
 
 
         if (file.isEmpty()) {
@@ -170,7 +180,7 @@ public class LoginController {
         int lastIndex = file.getOriginalFilename().lastIndexOf('.');
         String substring = file.getOriginalFilename().substring(lastIndex, file.getOriginalFilename().length());
 
-        if (!fileExtentions.contains(substring)){
+        if (!fileExtentions.contains(substring)) {
             modelAndView.addObject("messageError", "Please upload only jpeg, png, mp4, jpg, gif, .pdf, .doc, .docx files");
             modelAndView.setViewName("student/home");
             return modelAndView;
@@ -188,7 +198,7 @@ public class LoginController {
             byte[] bytes = file.getBytes();
 
 
-            String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(new Date())+ "_" +file.getOriginalFilename();
+            String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + "_" + file.getOriginalFilename();
 
             uploadMaterials.setFileType(file.getContentType());
             uploadMaterials.setFileName(fileName);
@@ -213,7 +223,7 @@ public class LoginController {
                 modelAndView.addObject("studentActivities1", studentActivities1);
 
                 List<String> activityTypes2 = Arrays.asList("Experience", "Community Service", "Extra-curricular");
-                List<StudentActivity>  studentActivityTypes2 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes2);
+                List<StudentActivity> studentActivityTypes2 = studentActivityService.findByUserIdAndActivityTypeIsIn(user.getId(), activityTypes2);
                 modelAndView.addObject("studentActivities2", studentActivityTypes2);
 
                 List<UploadMaterials> uploadMaterialsNew = uploadMaterialsService.findByUserId(user.getId());
@@ -223,30 +233,28 @@ public class LoginController {
             }
 
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
         modelAndView.setViewName("student/home");
-        return  modelAndView;
+        return modelAndView;
     }
 
 
-    @RequestMapping(value= "/default", method = RequestMethod.GET)
+    @RequestMapping(value = "/default", method = RequestMethod.GET)
     public ModelAndView defaultAfterLogin() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String role = auth.getAuthorities().toString();
 
         String targetUrl = "";
-        if(role.contains("ADMIN")) {
+        if (role.contains("ADMIN")) {
             targetUrl = "redirect:/admin/home";
-        } else if(role.contains("STUDENT")) {
+        } else if (role.contains("STUDENT")) {
             targetUrl = "redirect:/student/home";
 
-        } else if(role.contains("RECRUITER")) {
+        } else if (role.contains("RECRUITER")) {
             targetUrl = "redirect:/recruiter/home";
-        }
-        else {
+        } else {
             targetUrl = "redirect:/access-denied";
         }
         return new ModelAndView(targetUrl);

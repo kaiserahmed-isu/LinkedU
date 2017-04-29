@@ -172,7 +172,7 @@
                     <div th:if="${universities != null and not #lists.isEmpty(universities)}">
                         <select th:field="*{university_id}">
                             <option th:each="university : ${universities}"
-                                    th:value="${university.user_id}"
+                                    th:value="${university.user}"
                                     th:text="${university.university_name}"/>
                         </select>
                     </div>

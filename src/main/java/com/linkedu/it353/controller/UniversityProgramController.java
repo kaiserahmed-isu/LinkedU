@@ -48,7 +48,7 @@ public class UniversityProgramController {
         ModelAndView modelAndView = new ModelAndView();
         UniversityProgram universityProgram = new UniversityProgram();
         modelAndView.addObject("program", universityProgram);
-        modelAndView.setViewName("university/universityProgram/programupdate");
+        modelAndView.setViewName("university/program/programupdate");
         return modelAndView;
     }
 
@@ -57,9 +57,9 @@ public class UniversityProgramController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        universityProgram.setUser_id(user.getId());//needs to be updated
+        universityProgram.setUser(user.getId());//needs to be updated
         universityProgramService.addProgram(universityProgram);
-        modelAndView.setViewName("university/universityProgram/successful");
+        modelAndView.setViewName("redirect:/recruiter/home");
         return modelAndView;
     }
 

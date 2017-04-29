@@ -34,4 +34,8 @@ public class UniversityProgramService {
     public void updateProgram(Integer program_id, UniversityProgram universityProgram) {
         universityProgramRepository.save(universityProgram);
     }
+
+    public List<UniversityProgram> getAllPrograms(int id) {
+        return universityProgramRepository.findByUser(id);
+    }
 }

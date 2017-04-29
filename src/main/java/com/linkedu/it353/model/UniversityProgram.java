@@ -10,16 +10,20 @@ import javax.persistence.*;
 public class UniversityProgram {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer program_id;
-    private Integer user_id;
+
+    @Column(name = "userid")
+    private Integer user;
+
     private String program_name;
+
     private Integer min_GPA, min_ACT;
 
     public UniversityProgram() {
     }
 
-    public UniversityProgram(Integer program_id, Integer user_id, String program_name, Integer min_GPA, Integer min_ACT) {
+    public UniversityProgram(Integer program_id, Integer user, String program_name, Integer min_GPA, Integer min_ACT) {
         this.program_id = program_id;
-        this.user_id = user_id;
+        this.user = user;
         this.program_name = program_name;
         this.min_GPA = min_GPA;
         this.min_ACT = min_ACT;
@@ -33,12 +37,12 @@ public class UniversityProgram {
         this.program_id = program_id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUser() {
+        return user;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUser(Integer user) {
+        this.user = user;
     }
 
     public String getProgram_name() {

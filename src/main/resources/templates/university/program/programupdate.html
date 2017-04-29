@@ -426,9 +426,70 @@
 
 <body class="with-top-navbar">
 
+<div class="container">
+    <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar-collapse-main">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img th:src="@{/Image/logo.jpg}" alt="brand">
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
-<div class="growl" id="app-growl"></div>
+                    <ul class="nav navbar-nav hidden-xs">
+                        <li class="active">
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
 
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                        <li>
+                            <a class="app-notifications" href="#">
+                                <span class="icon icon-bell"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                                <img class="img-circle" src="/assets/img/avatar-dhg.png">
+                            </button>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-right app-search" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                        </div>
+                    </form>
+
+                    <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                        <!--<li><a href="#">Home</a></li>-->
+                        <li><a href="#">Profile</a></li>
+                        <li><a th:href="@{/logout}">Logout</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav hidden">
+                        <li><a th:href="@{/logout}" class="btn btn-md btn-primary col-md-10 col-md-offset-1">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!--
 <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
     <div class="container">
         <div class="navbar-header">
@@ -496,10 +557,12 @@
         </div>
     </div>
 </nav>
+-->
 
 <form autocomplete="off" id="msform" action="#" th:action="@{/program}" th:object="${program}" method="post"
       role="form">
 
+    <input type="text" name="program_name" placeholder="Program name" th:value="*{program_name}"/>
     <input type="text" name="min_GPA" placeholder="Min GPA Score" th:value="*{min_GPA}"/>
     <input type="text" name="min_ACT" placeholder="Min ACT score" th:value="*{min_ACT}"/>
 

@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "university_profile")
 public class UniversityProfile {
     @Id
-    @NotNull
     private Integer user_id;
     private String university_name;
     private String city;
@@ -21,7 +20,7 @@ public class UniversityProfile {
     private String website;
     private String terms;
     private Integer zip;
-    private Integer contact;
+    private String contact;
 
     public Integer getZip() {
         return zip;
@@ -31,18 +30,18 @@ public class UniversityProfile {
         this.zip = zip;
     }
 
-    public Integer getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(Integer contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
     public UniversityProfile() {
     }
 
-    public UniversityProfile(Integer user_id, String university_name, String city, String state, String address, String website, String terms, Integer zip, Integer contact) {
+    public UniversityProfile(Integer user_id, String university_name, String city, String state, String address, String website, String terms, Integer zip, String contact) {
         this.user_id = user_id;
         this.university_name = university_name;
         this.city = city;

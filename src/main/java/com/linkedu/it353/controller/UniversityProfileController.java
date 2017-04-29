@@ -49,9 +49,12 @@ public class UniversityProfileController {
     @RequestMapping(value = "/profileupdate", method = RequestMethod.GET)
     public ModelAndView universityProfileRegistration() {
         ModelAndView modelAndView = new ModelAndView();
-        UniversityProfile universityProfile = new UniversityProfile();
-        modelAndView.addObject("profile", universityProfile);
-        modelAndView.setViewName("university/universityProfile/profileupdate");
+//        UniversityProfile universityProfile = new UniversityProfile();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        UniversityProfile universityProfile = universityProfileService.getUniversity(user.getId());
+        modelAndView.addObject("universityProfile", universityProfile);
+        modelAndView.setViewName("university/profile/profileupdate");
         return modelAndView;
     }
 
@@ -59,16 +62,17 @@ public class UniversityProfileController {
     public ModelAndView updateUniversity(@Valid UniversityProfile universityProfile, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        universityProfile.setUser_id(user.getId());//needs to be updated
+
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("university/universityProfile/profileupdate");
+            modelAndView.setViewName("university/Profile/profileupdate");
         } else {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.findUserByEmail(auth.getName());
+            universityProfile.setUser_id(user.getId());//needs to be updated
             universityProfileService.addUniversity(universityProfile);
             System.out.println("in update");
-//        modelAndView.setViewName("university/universityProfile/successful");
-            modelAndView.setViewName("redirect:/programupdate");
+        modelAndView.setViewName("university/profile/home");
+            //modelAndView.setViewName("redirect:/programupdate");
         }
         return modelAndView;
     }

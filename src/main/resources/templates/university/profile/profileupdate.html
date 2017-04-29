@@ -31,12 +31,12 @@
         }
 
         html {
-            height: 100%;
-            /*Image only BG fallback*/
-            background: url('http://thecodeplayer.com/uploads/media/gs.png');
-            /*background = gradient + image pattern combo*/
-            background: linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
-            url('http://thecodeplayer.com/uploads/media/gs.png');
+            height: 150%;
+            /* !*Image only BG fallback*!
+             background: url('http://thecodeplayer.com/uploads/media/gs.png');
+             !*background = gradient + image pattern combo*!
+             background: linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
+             url('http://thecodeplayer.com/uploads/media/gs.png');*/
         }
 
         body {
@@ -174,15 +174,6 @@
 
     </style>
     <style>
-        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
-        /* this chunk of css is not part of the toolkit :) */
-        body {
-            width: 1px;
-            min-width: 100%;
-            *width: 100%;
-        }
-    </style>
-    <style>
         fieldset {
             border-top-width: 0px;
             border-right-width: 0px;
@@ -212,17 +203,17 @@
             min-width: 0px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            padding-top: 0px;
-            padding-right: 0px;
-            padding-bottom: 0px;
-            padding-left: 0px;
-        }
+        /*        * {
+                    box-sizing: border-box;
+                    margin-top: 0px;
+                    margin-right: 0px;
+                    margin-bottom: 0px;
+                    margin-left: 0px;
+                    padding-top: 0px;
+                    padding-right: 0px;
+                    padding-bottom: 0px;
+                    padding-left: 0px;
+                }*/
 
         #msform fieldset {
             background-image: initial;
@@ -274,66 +265,69 @@
             display: none;
         }
 
-        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-            font-family: inherit;
-            font-weight: 600;
-            line-height: 1.2;
-            color: inherit;
-        }
+        /*
 
-        h1, .h1, h2, .h2, h3, .h3 {
-            margin-top: 22px;
-            margin-bottom: 11px;
-        }
+                h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                    font-family: inherit;
+                    font-weight: 600;
+                    line-height: 1.2;
+                    color: inherit;
+                }
 
-        h2, .h2 {
-            font-size: 30px;
-        }
+                h1, .h1, h2, .h2, h3, .h3 {
+                    margin-top: 22px;
+                    margin-bottom: 11px;
+                }
 
-        .fs-title {
-            font-size: 15px;
-            text-transform: uppercase;
-            color: rgb(44, 62, 80);
-            margin-bottom: 10px;
-        }
+                h2, .h2 {
+                    font-size: 30px;
+                }
 
-        h3, .h3 {
-            font-size: 24px;
-        }
+                .fs-title {
+                    font-size: 15px;
+                    text-transform: uppercase;
+                    color: rgb(44, 62, 80);
+                    margin-bottom: 10px;
+                }
 
-        .fs-subtitle {
-            font-weight: normal;
-            font-size: 13px;
-            color: rgb(102, 102, 102);
-            margin-bottom: 20px;
-        }
+                h3, .h3 {
+                    font-size: 24px;
+                }
 
-        button, input, optgroup, select, textarea {
-            color: inherit;
-            font-style: inherit;
-            font-variant-ligatures: inherit;
-            font-variant-caps: inherit;
-            font-variant-numeric: inherit;
-            font-weight: inherit;
-            font-stretch: inherit;
-            font-size: inherit;
-            line-height: inherit;
-            font-family: inherit;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-        }
+                .fs-subtitle {
+                    font-weight: normal;
+                    font-size: 13px;
+                    color: rgb(102, 102, 102);
+                    margin-bottom: 20px;
+                }
 
-        input {
-            line-height: normal;
-        }
+                button, input, optgroup, select, textarea {
+                    color: inherit;
+                    font-style: inherit;
+                    font-variant-ligatures: inherit;
+                    font-variant-caps: inherit;
+                    font-variant-numeric: inherit;
+                    font-weight: inherit;
+                    font-stretch: inherit;
+                    font-size: inherit;
+                    line-height: inherit;
+                    font-family: inherit;
+                    margin-top: 0px;
+                    margin-right: 0px;
+                    margin-bottom: 0px;
+                    margin-left: 0px;
+                }
 
-        input, button, select, textarea {
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-        }
+                input {
+                    line-height: normal;
+                }
+
+                input, button, select, textarea {
+                    font-family: inherit;
+                    font-size: inherit;
+                    line-height: inherit;
+                }
+        */
 
         #msform input, #msform textarea {
             padding-top: 15px;
@@ -428,147 +422,146 @@
 
 
 <div class="growl" id="app-growl"></div>
-
-<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse-main">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">
-                <img th:src="@{/assets/img/brand-white.png}" alt="brand">
-            </a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-collapse-main">
-
-            <ul class="nav navbar-nav hidden-xs">
-                <li class="active">
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="profile/index.html">Profile</a>
-                </li>
-                <li>
-                    <a data-toggle="modal" href="#msgModal">Messages</a>
-                </li>
-                <li>
-                    <a href="docs/index.html">Docs</a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
-                <li>
-                    <a class="app-notifications" href="notifications/index.html">
-                        <span class="icon icon-bell"></span>
-                    </a>
-                </li>
-                <li>
-                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
-                        <img class="img-circle" th:src="@{/assets/img/avatar-dhg.png}">
+<div class="container">
+    <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar-collapse-main">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
-                </li>
-            </ul>
-
-            <form class="navbar-form navbar-right app-search" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                    <a class="navbar-brand" href="#">
+                        <img th:src="@{/Image/logo.jpg}" alt="brand">
+                    </a>
                 </div>
+                <div class="navbar-collapse collapse" id="navbar-collapse-main">
+
+                    <ul class="nav navbar-nav hidden-xs">
+                        <li class="active">
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                        <li>
+                            <a class="app-notifications" href="#">
+                                <span class="icon icon-bell"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                                <img class="img-circle" src="/assets/img/avatar-dhg.png">
+                            </button>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-right app-search" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                        </div>
+                    </form>
+
+                    <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                        <!--<li><a href="#">Home</a></li>-->
+                        <li><a href="#">Profile</a></li>
+                        <li><a th:href="@{/logout}">Logout</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav hidden">
+                        <li><a th:href="@{/logout}" class="btn btn-md btn-primary col-md-10 col-md-offset-1">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <form class="" autocomplete="off" id="msform" action="#" th:action="@{/university}" th:object="${universityProfile}"
+                  method="post" role="form">
+
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li class="active">Basic details</li>
+                    <li>Address details</li>
+                    <li>Term Details</li>
+                </ul>
+                <!-- fieldsets -->
+                <fieldset>
+                    <h2 class="fs-title">Add university profile info</h2>
+                    <h3 class="fs-subtitle">Basic details</h3>
+                    <input type="text" name="name" placeholder="University name" th:field="*{university_name}">
+                    <input type="text" name="website" placeholder="website" th:value="*{website}">
+                    <input type="text" name="contact" placeholder="contact" th:value="*{contact}">
+                    <input type="button" name="next" class="next action-button" value="Next">
+                </fieldset>
+                <fieldset>
+                    <h2 class="fs-title"></h2>
+                    <h3 class="fs-subtitle">Address details</h3>
+                    <input type="text" name="city" placeholder="city name" th:value="*{city}">
+                    <input type="text" name="state" placeholder="state name" th:value="*{state}">
+                    <input type="text" name="address" placeholder="address" th:value="*{address}">
+                    <input type="text" name="zip" placeholder="zip" th:value="*{zip}">
+                    <input type="button" name="previous" class="previous action-button" value="Previous">
+                    <input type="button" name="next" class="next action-button" value="Next">
+                </fieldset>
+                <fieldset>
+                    <h2 class="fs-title"></h2>
+                    <h3 class="fs-subtitle">Terms</h3>
+                    <input type="text" name="terms" placeholder="terms" th:value="*{terms}">
+                    <input type="button" name="previous" class="previous action-button" value="Previous">
+                    <button type="submit" name="submit" class="submit action-button">submit</button>
+                    <button>
+                    </button>
+                </fieldset>
             </form>
-
-            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="profile/index.html">Profile</a></li>
-                <li><a href="notifications/index.html">Notifications</a></li>
-                <li><a data-toggle="modal" href="#msgModal">Messages</a></li>
-                <li><a href="docs/index.html">Docs</a></li>
-                <li><a href="#" data-action="growl">Growl</a></li>
-                <li><a href="login/index.html">Logout</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav hidden">
-                <li><a href="#" data-action="growl">Growl</a></li>
-                <li><a href="login/index.html">Logout</a></li>
-            </ul>
         </div>
     </div>
-</nav>
+    <div class="container">
+        <div class="row">
+            <div class="navbar navbar-fixed-bottom">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-2">
+                    <ul>
+                        <li>
+                            <a th:href="@{/about-us}">About Us</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/contact-us}">Contact Us</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/terms}">Terms & Condition</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/policies}">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-2">
 
-<form autocomplete="off" id="msform" action="#" th:action="@{/university}" th:object="${profile}"
-      method="post" role="form">
+                <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social"></i></a>
+                <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+                <a href="https://plus.google.com/+Bootsnipp-page"><i
+                        class="fa fa-google-plus-square fa-3x social"></i></a>
+                <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
 
-    <!-- progressbar -->
-    <ul id="progressbar">
-        <li class="active">Basic details</li>
-        <li>Address details</li>
-        <li>Term Details</li>
-    </ul>
-    <!-- fieldsets -->
-    <fieldset>
-        <h2 class="fs-title">Add university profile info</h2>
-        <h3 class="fs-subtitle">Basic details</h3>
-        <input type="text" name="name" placeholder="University name" th:field="*{university_name}">
-        <input type="text" name="website" placeholder="website" th:value="*{website}">
-        <input type="text" name="contact" placeholder="contact" th:value="*{contact}">
-        <input type="button" name="next" class="next action-button" value="Next">
-    </fieldset>
-    <fieldset>
-        <h2 class="fs-title"></h2>
-        <h3 class="fs-subtitle">Address details</h3>
-        <input type="text" name="city" placeholder="city name" th:value="*{city}">
-        <input type="text" name="state" placeholder="state name" th:value="*{state}">
-        <input type="text" name="address" placeholder="address" th:value="*{address}">
-        <input type="text" name="zip" placeholder="zip" th:value="*{zip}">
-        <input type="button" name="previous" class="previous action-button" value="Previous">
-        <input type="button" name="next" class="next action-button" value="Next">
-    </fieldset>
-    <fieldset>
-        <h2 class="fs-title"></h2>
-        <h3 class="fs-subtitle">Terms</h3>
-        <input type="text" name="terms" placeholder="terms" th:value="*{terms}">
-        <input type="button" name="previous" class="previous action-button" value="Previous">
-        <button type="submit" name="submit" class="submit action-button">submit</button>
-        <button>
-        </button>
-    </fieldset>
-</form>
-<div class="container-fluid panel-footer">
-    <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-2">
-            <ul>
-                <li>
-                    <a th:href="@{/about-us}">About Us</a>
-                </li>
-                <li>
-                    <a th:href="@{/contact-us}">Contact Us</a>
-                </li>
-                <li>
-                    <a th:href="@{/terms}">Terms & Condition</a>
-                </li>
-                <li>
-                    <a th:href="@{/policies}">Privacy Policy</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-2">
-
-            <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social"></i></a>
-            <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
-            <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social"></i></a>
-            <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
-
+            </div>
         </div>
     </div>
 </div>
-
-
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/js/chart.js}"></script>
 <script th:src="@{/assets/js/toolkit.js}"></script>
