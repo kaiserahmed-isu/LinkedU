@@ -5,6 +5,7 @@ import com.linkedu.it353.model.User;
 import com.linkedu.it353.service.UploadMaterialsService;
 import com.linkedu.it353.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,10 @@ import java.util.Date;
 @Controller
 public class UploadMaterialsController {
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "E://temp//";
+//    private static String UPLOADED_FOLDER = "E://temp//";
+
+    @Value("${uploads.folder}")
+    private static String UPLOADED_FOLDER;
 
     @Autowired
     private UserService userService;

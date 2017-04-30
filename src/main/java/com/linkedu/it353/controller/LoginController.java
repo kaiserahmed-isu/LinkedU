@@ -9,16 +9,22 @@ import javax.validation.Valid;
 import com.linkedu.it353.model.*;
 import com.linkedu.it353.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,6 +34,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 @Controller
 public class LoginController {
@@ -50,8 +58,10 @@ public class LoginController {
     @Autowired
     private UploadMaterialsService uploadMaterialsService;
 
-    private static String UPLOADED_FOLDER = "E://temp//";
+//    private static String UPLOADED_FOLDER = "E://temp//";
 
+    @Value("${uploads.folder}")
+    private String UPLOADED_FOLDER;
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public ModelAndView login() {
@@ -151,6 +161,20 @@ public class LoginController {
             List<UploadMaterials> uploadMaterials = uploadMaterialsService.findByUserId(user.getId());
             modelAndView.addObject("uploadMaterials", uploadMaterials);
 
+            boolean profileImage = false;
+            for(UploadMaterials mat: uploadMaterials){
+                if(mat.getType().equals("Profile")){
+                    modelAndView.addObject("profileImage", "/image/"+mat.getFileName());
+                    profileImage = true;
+
+                }
+
+            }
+            if (!profileImage) {
+                modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
+            }
+
+
             modelAndView.setViewName("student/home");
         } else {
             return new ModelAndView("redirect:/student/profile");
@@ -239,6 +263,32 @@ public class LoginController {
         modelAndView.setViewName("student/home");
         return modelAndView;
     }
+
+    @GetMapping("/file/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> showFile(@PathVariable String filename) throws IOException {
+        Path file = Paths.get(UPLOADED_FOLDER + filename);
+
+        Resource resource = new UrlResource(file.toUri());
+
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+resource.getFilename()+"\"")
+                .body(resource);
+    }
+
+    @GetMapping("/image/{filename:.+}")
+    public HttpEntity<byte[]> showPostsImage(@PathVariable String filename) throws IOException {
+        Path file = Paths.get(UPLOADED_FOLDER + filename);
+        byte[] image = IOUtils.toByteArray(FileUtils.openInputStream(new File(file.toString())));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        headers.setContentLength(image.length);
+
+        return new HttpEntity<>(image, headers);
+    }
+
 
 
     @RequestMapping(value = "/default", method = RequestMethod.GET)
