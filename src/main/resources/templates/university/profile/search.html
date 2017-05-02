@@ -142,6 +142,42 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group media-list media-list-stream">
+                <li class="media list-group-item p-a">
+                    <div class="media-body">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>University name</th>
+                                <th>Website</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Programs offered</th>
+                            </tr>
+                            <tr th:each="profile:${universityProfiles}">
+                                <td
+                                        th:text="${profile.website}">
+                                </td>
+                                <td
+                                        th:text="${profile.city}">
+                                </td>
+                                <td
+                                        th:text="${profile.state}">
+                                </td>
+                            </tr>
+                            <!--                                 <tr th:each="program:${universityProgram}">
+                                                                 <td th:text="${program.program_name}"></td>
+                                                                 <td><a href="#" th:text="${program.min_GPA}"></a></td>
+                                                                 <td th:text="${program.min_ACT}"></td>
+                                                             </tr>-->
+                        </table>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>
 <div data-role="footer" class="container-fluid panel-footer">
     <div class="row">
