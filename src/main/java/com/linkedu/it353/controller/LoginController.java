@@ -247,6 +247,8 @@ public class LoginController {
             return modelAndView;
 
         }
+
+
         try {
 
             UploadMaterials uploadMaterials = new UploadMaterials();
@@ -256,6 +258,7 @@ public class LoginController {
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
 
+
             String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + "_" + file.getOriginalFilename();
 
             uploadMaterials.setFileType(file.getContentType());
@@ -264,6 +267,7 @@ public class LoginController {
             Files.write(path, bytes);
 
             uploadMaterialsService.saveUploadMaterials(uploadMaterials);
+
 
             modelAndView.addObject("successMessage",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
@@ -288,6 +292,8 @@ public class LoginController {
 
                 modelAndView.setViewName("student/home");
             }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -340,4 +346,6 @@ public class LoginController {
         }
         return new ModelAndView(targetUrl);
     }
+
+
 }
