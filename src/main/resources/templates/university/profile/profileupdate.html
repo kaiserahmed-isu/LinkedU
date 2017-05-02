@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
 
     <title>
 
@@ -16,11 +16,11 @@
 
     </title>
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'/>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet"/>
 
-    <link th:href="@{/assets/css/application.css}" rel="stylesheet">
-    <style>
+    <link th:href="@{/assets/css/application.css}" rel="stylesheet"/>
+    <style type="text/css">
         /*custom font*/
         @import url(http://fonts.googleapis.com/css?family=Montserrat);
 
@@ -173,7 +173,7 @@
 
 
     </style>
-    <style>
+    <style type="text/css">
         fieldset {
             border-top-width: 0px;
             border-right-width: 0px;
@@ -422,7 +422,7 @@
 
 
 <div class="growl" id="app-growl"></div>
-<div class="container">
+<div class="jumbotron" style="height:50em; margin-top: 1em; ">
     <div class="row">
         <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
             <div class="container">
@@ -445,7 +445,7 @@
                             <a href="#">Home</a>
                         </li>
                         <li>
-                            <a href="#">Profile</a>
+                            <a th:href="@{/recruiter/home}">Profile</a>
                         </li>
 
 
@@ -499,7 +499,7 @@
                 <fieldset>
                     <h2 class="fs-title">Add university profile info</h2>
                     <h3 class="fs-subtitle">Basic details</h3>
-                    <input type="text" name="name" placeholder="University name" th:field="*{university_name}">
+                    <input type="text" name="name" placeholder="University name" th:field="*{universityName}">
                     <input type="text" name="website" placeholder="website" th:value="*{website}">
                     <input type="text" name="contact" placeholder="contact" th:value="*{contact}">
                     <input type="button" name="next" class="next action-button" value="Next">
@@ -526,7 +526,8 @@
             </form>
         </div>
     </div>
-    <div class="container">
+
+    <div class="navbar">
         <div class="row">
             <div class="navbar navbar-fixed-bottom">
                 <div class="col-md-1">

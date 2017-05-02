@@ -1,6 +1,5 @@
 package com.linkedu.it353.controller;
 
-
 import com.linkedu.it353.model.UniversityProfile;
 import com.linkedu.it353.model.User;
 import com.linkedu.it353.service.UniversityProfileService;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by sanket on 4/18/2017.
@@ -49,10 +49,12 @@ public class UniversityProfileController {
     @RequestMapping(value = "/profileupdate", method = RequestMethod.GET)
     public ModelAndView universityProfileRegistration() {
         ModelAndView modelAndView = new ModelAndView();
-//        UniversityProfile universityProfile = new UniversityProfile();
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         UniversityProfile universityProfile = universityProfileService.getUniversity(user.getId());
+        if (universityProfile == null)
+            universityProfile = new UniversityProfile();
         modelAndView.addObject("universityProfile", universityProfile);
         modelAndView.setViewName("university/profile/profileupdate");
         return modelAndView;
@@ -71,9 +73,26 @@ public class UniversityProfileController {
             universityProfile.setUser_id(user.getId());//needs to be updated
             universityProfileService.addUniversity(universityProfile);
             System.out.println("in update");
-        modelAndView.setViewName("university/profile/home");
+            modelAndView.setViewName("university/profile/home");
             //modelAndView.setViewName("redirect:/programupdate");
         }
+        return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/university/search")
+    public ModelAndView searchUniversity() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(new UniversityProfile());
+        modelAndView.setViewName("university/profile/search");
+        return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/university/search")
+    public ModelAndView searchUniversity(UniversityProfile universityProfile) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<UniversityProfile> universityProfiles = universityProfileService.searchProfile(universityProfile);
+        modelAndView.addObject("universityProfiles",universityProfiles);
+        modelAndView.setViewName("university/profile/searchresult");
         return modelAndView;
     }
 }
