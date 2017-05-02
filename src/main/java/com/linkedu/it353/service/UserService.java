@@ -3,6 +3,7 @@ package com.linkedu.it353.service;
 /**
  * Created by Kaiser Ahmed on 3/8/2017.
  */
+import com.linkedu.it353.model.Role;
 import com.linkedu.it353.model.User;
 
 public interface UserService {
@@ -13,4 +14,5 @@ public interface UserService {
     public void updateToPaidUser(User user);
     public User findUserByValidateCode(String validateCode);
     public void updateUser(User user);
+    public Integer countDistinctByRoles(Role role);
 }

@@ -157,7 +157,9 @@
 
             <div class="panel panel-default visible-md-block visible-lg-block">
                 <div class="panel-body">
-                    <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
+                    <h5 class="m-t-0">About
+                        <!--<small>· <a href="#">Edit</a></small>-->
+                    </h5>
                     <ul class="list-unstyled list-spaced">
                         <li><span class="text-muted icon icon-calendar m-r"></span>Hello, <span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span>! </li>
                         <li><span class="text-muted icon icon-github m-r"></span>Email : <span th:utext="${user.email}"></span></li>
@@ -171,7 +173,9 @@
             <ul class="list-group media-list media-list-stream">
 
                 <li class="media list-group-item p-a">
-                    <h5 class="m-t-0">EDUCATION <small> <a href="#">Edit</a></small></h5>
+                    <h5 class="m-t-0">EDUCATION
+                        <!--<small> <a href="#">Edit</a></small>-->
+                    </h5>
                     <ul class="list-unstyled list-spaced">
                         <li><span class="text-muted icon icon-book m-r"></span>Went to <span class="bold-text" th:utext="${studentProfile.HS_name}"></span></li>
                         <li><span class="text-muted icon icon-calendar m-r"></span>Graduation Date: <span class="bold-text" th:text="${#dates.format(studentProfile.graduation_GED_date, 'dd-MMM-yyyy')}" ></span></li>
@@ -186,7 +190,9 @@
                     <div class="media-body">
                         <div class="media-heading">
 
-                            <h5>ACTIVITIES, HONORS, AWARDS:<small> <a href="#">Edit</a></small></h5>
+                            <h5>ACTIVITIES, HONORS, AWARDS:
+                                <!--<small> <a href="#">Edit</a></small>-->
+                            </h5>
                         </div>
 
 
@@ -216,7 +222,9 @@
                         <div class="media-body-text">
                             <div class="media-heading">
 
-                                <h5>COMMUNITY SERVICE:<small> <a href="#">Edit</a></small></h5>
+                                <h5>COMMUNITY SERVICE:
+                                    <!--<small> <a href="#">Edit</a></small>-->
+                                </h5>
                             </div>
                             <p> <table class="table table-bordered table-hover">
                             <!--<tr>-->
@@ -399,8 +407,8 @@
                     <div data-grid="images" data-target-height="150">
                         <img class="media-object" data-width="640" data-height="640" data-action="zoom" src="/Image/isu.jpg">
                     </div>
-                    <p><strong>Illinois State University</strong> <br>Illinois State University, founded in 1857 as Illinois State Normal University, is the oldest public university in Illinois and is located in Normal, Illinois</p>
-                    <button class="btn btn-primary-outline btn-sm">Apply Now</button>
+                    <p><strong th:text="${showcase.university_name}"></strong> <br>Illinois State University, founded in 1857 as Illinois State Normal University, is the oldest public university in Illinois and is located in Normal, Illinois</p>
+                    <a th:href="${showcase.website}" target="_blank" class="btn btn-primary-outline btn-sm">Apply Now</a>
                 </div>
             </div>
             <div class="panel panel-default panel-link-list">

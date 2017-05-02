@@ -30,6 +30,10 @@ public class ShowcaseService {
         showcaseRepository.save(showcase);
     }
 
+    public Showcase findShowcaseByPriority(Integer priority){
+        return showcaseRepository.findFirstByPriority(priority);
+    }
+
 public void removeShowcase(Integer showcase_id){
                 showcaseRepository.delete(showcase_id);
 }

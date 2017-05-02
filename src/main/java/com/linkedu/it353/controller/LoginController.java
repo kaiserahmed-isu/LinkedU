@@ -7,6 +7,8 @@ package com.linkedu.it353.controller;
 import javax.validation.Valid;
 
 import com.linkedu.it353.model.*;
+import com.linkedu.it353.repository.RoleRepository;
+import com.linkedu.it353.repository.ShowcaseRepository;
 import com.linkedu.it353.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,6 +60,12 @@ public class LoginController {
     @Autowired
     private UploadMaterialsService uploadMaterialsService;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private ShowcaseRepository showcaseRepository;
+
 //    private static String UPLOADED_FOLDER = "E://temp//";
 
     @Value("${uploads.folder}")
@@ -106,8 +114,33 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
+        modelAndView.addObject("user", user);
+
+        List<UploadMaterials> uploadMaterials = uploadMaterialsService.findByUserId(user.getId());
+        modelAndView.addObject("uploadMaterials", uploadMaterials);
+
+        Role studentRole = roleRepository.findByRole("STUDENT");
+        Role recruiterRole = roleRepository.findByRole("RECRUITER");
+        Integer countStudents = userService.countDistinctByRoles(studentRole);
+        Integer countUniversity = userService.countDistinctByRoles(recruiterRole);
+
+        modelAndView.addObject("countStudents", countStudents);
+        modelAndView.addObject("countUniversity", countUniversity);
+
+
+        boolean profileImage = false;
+        for(UploadMaterials mat: uploadMaterials){
+            if(mat.getType().equals("Profile")){
+                modelAndView.addObject("profileImage", "/image/"+mat.getFileName());
+                profileImage = true;
+
+            }
+
+        }
+        if (!profileImage) {
+            modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
+        }
+
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
@@ -173,6 +206,10 @@ public class LoginController {
             if (!profileImage) {
                 modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
             }
+
+            Showcase showcase = showcaseRepository.findFirstByPriority(1);
+            UniversityProfile showcaseUni = universityProfileService.getUniversity(showcase.getUniversity_id());
+            modelAndView.addObject("showcase", showcaseUni);
 
 
             modelAndView.setViewName("student/home");

@@ -5,6 +5,7 @@ package com.linkedu.it353.service;
  */
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import com.linkedu.it353.model.Role;
 import com.linkedu.it353.model.User;
@@ -77,4 +78,8 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByValidateCode(validateCode);
     }
 
+    @Override
+    public Integer countDistinctByRoles(Role role){
+        return userRepository.countDistinctByRoles(role);
+    }
 }
