@@ -413,6 +413,11 @@
             margin-bottom: 10px;
             margin-left: 5px;
         }
+
+        .navbar-brand {
+            width: 3em;
+            margin-top: -0.5em;
+        }
     </style>
 
 </head>
@@ -420,10 +425,66 @@
 
 <body class="with-top-navbar">
 
+<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/Image/logo.jpg}" alt="brand">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
-<div class="growl" id="app-growl"></div>
-<div class="jumbotron" style="height:50em; margin-top: 1em; ">
-    <div class="row">
+            <ul class="nav navbar-nav hidden-xs">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Profile</a>
+                </li>
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                <li >
+                    <a class="app-notifications" href="#">
+                        <span class="icon icon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                        <img class="img-circle" th:src="@{/assets/img/avatar-dhg.png}">
+                    </button>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right app-search" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                <!--<li><a href="#">Home</a></li>-->
+                <li><a href="#">Profile</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav hidden">
+                <li><a th:href="@{/logout}" class="btn btn-md btn-primary col-md-10 col-md-offset-1" >Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="height:50em; margin-top: 1em; ">
+    <!--<div class="row">
         <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
             <div class="container">
                 <div class="navbar-header">
@@ -471,7 +532,7 @@
                     </form>
 
                     <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
-                        <!--<li><a href="#">Home</a></li>-->
+                        &lt;!&ndash;<li><a href="#">Home</a></li>&ndash;&gt;
                         <li><a href="#">Profile</a></li>
                         <li><a th:href="@{/logout}">Logout</a></li>
                     </ul>
@@ -483,10 +544,12 @@
                 </div>
             </div>
         </nav>
-    </div>
-    <div class="container">
-        <div class="row">
-            <form class="" autocomplete="off" id="msform" action="#" th:action="@{/university}" th:object="${universityProfile}"
+    </div>-->
+    <div class="row">
+        <div class="jumbotron" style="height: 50em">
+
+            <form class="" autocomplete="off" id="msform" action="#" th:action="@{/university}"
+                  th:object="${universityProfile}"
                   method="post" role="form">
 
                 <!-- progressbar -->
@@ -499,7 +562,7 @@
                 <fieldset>
                     <h2 class="fs-title">Add university profile info</h2>
                     <h3 class="fs-subtitle">Basic details</h3>
-                    <input type="text" name="name" placeholder="University name" th:field="*{universityName}">
+                    <input type="text" name="name" placeholder="University name" th:field="*{university_name}">
                     <input type="text" name="website" placeholder="website" th:value="*{website}">
                     <input type="text" name="contact" placeholder="contact" th:value="*{contact}">
                     <input type="button" name="next" class="next action-button" value="Next">
@@ -525,11 +588,11 @@
                 </fieldset>
             </form>
         </div>
-    </div>
+        <!--    </div>
+            <div class="row">-->
+        <div class="navbar">
 
-    <div class="navbar">
-        <div class="row">
-            <div class="navbar navbar-fixed-bottom">
+            <div class="navbar"> <!--navbar-fixed-bottom-->
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-2">

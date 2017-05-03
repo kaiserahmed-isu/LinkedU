@@ -40,7 +40,10 @@
             border-radius: 70%;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
         }
-
+        .navbar-brand{
+            width: 3em;
+            margin-top: -0.5em;
+        }
     </style>
 
 <body>
@@ -142,7 +145,7 @@
         <tbody>
         <tr class="success">
             <td th:text="${profile.user}">A Smoke Test</td>
-            <td th:text="${profile.universityName}">A Smoke Test</td>
+            <td th:text="${profile.university_name}">A Smoke Test</td>
             <td th:text="${profile.city}">A Smoke Test</td>
             <td th:text="${profile.state}">A Smoke Test</td>
             <td th:text="${profile.address}">A Smoke Test</td>

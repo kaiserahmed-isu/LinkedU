@@ -84,11 +84,11 @@
 
             <ul class="nav navbar-nav hidden-xs">
                 <li class="active">
-                    <a href="#">Home</a>
+                    <a th:href="@{/student/home}">Home</a>
                 </li>
                 <li>
 
-                    <a th:href="@{/recruiter/search-student}">Search Student</a>
+                    <a th:href="@{/university/search}">Search University</a>
                 </li>
 
 
@@ -166,7 +166,7 @@
             <div class="panel panel-default visible-md-block visible-lg-block">
                 <div class="panel-body">
                     <h5 class="m-t-0">About
-                        <small>· <a href="#">Edit</a></small>
+                        <!--<small>· <a href="#">Edit</a></small>-->
                     </h5>
                     <ul class="list-unstyled list-spaced">
                         <li><span class="text-muted icon icon-calendar m-r"></span>Hello, <span
@@ -190,7 +190,7 @@
                     </h2>
                     <br>
                     <h5 class="m-t-0">Details
-                        <small><a th:href="@{/profileupdate}">Edit</a></small>
+                        <!--<small><a th:href="@{/profileupdate}">Edit</a></small>-->
                     </h5>
 
                     <ul class="list-group list-spaced">
@@ -215,12 +215,12 @@
                             <span class="bold-text" th:utext="${universityProfile.contact}"></span>
                         </li>
                         <li class="list-group-item">
-                            Terms:
+                            Contact:
                             <span class="bold-text" th:utext="${universityProfile.terms}"></span>
                         </li>
                         <li class="list-group-item">
                             Website:
-                            <a class="bold-text" th:href="${universityProfile.website}">
+                            <a class="bold-text" th:href="@{${universityProfile.website}}">
                             <span class="bold-text"
                                   th:utext="${universityProfile.website}">
                             </span>
@@ -244,60 +244,6 @@
                                 <td th:text="${program.min_ACT}"></td>
                             </tr>
                         </table>
-                    </div>
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="container">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-md-6">-->
-
-                                <h1 class="text-center">
-                                    <a href="#myModal" role="button" class="btn btn-primary btn-lg"
-                                       data-toggle="modal">Add program</a>
-                                </h1>
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-                                    </button>
-                                    <h3 id="myModalLabel">Add more programs</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <!--                                        <form class="form-horizontal col-sm-12">
-                                                                                <div class="form-group"><label>Name</label><input class="form-control required" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
-                                                                                <div class="form-group"><label>Message</label><textarea class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
-                                                                                <div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
-                                                                                <div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div>
-                                                                                <div class="form-group"><button type="submit" class="btn btn-success pull-right">Send It!</button> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div>
-                                                                            </form>-->
-
-                                    <form class="form-horizontal col-sm-12" autocomplete="off" id="msform"
-                                          action="#" th:action="@{/program}" th:object="${program}" method="post"
-                                          role="form">
-
-                                        <input type="text" name="program_name" placeholder="Program name"
-                                               th:value="*{program_name}"/>
-                                        <input type="text" name="min_GPA" placeholder="Min GPA Score"
-                                               th:value="*{min_GPA}"/>
-                                        <input type="text" name="min_ACT" placeholder="Min ACT score"
-                                               th:value="*{min_ACT}"/>
-
-                                        <button type="submit" name="submit" class="submit action-button">submit
-                                            </button>
-
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </li>
             </ul>
