@@ -27,9 +27,9 @@
             <p class="admin-message-text text-center" th:utext="${freeMemberMessage}"></p>
 
             <div class="panel-body" th:if="${studentProfile}">
-                <span th:utext="${studentProfile.HS_name}"></span><br>
+                <span th:utext="${studentProfile.hsName}"></span><br>
                 <span th:utext="${studentProfile.ged}"></span><br>
-                <span th:utext="${studentProfile.graduation_GED_date}"></span><br>
+                <span th:utext="${studentProfile.graduationGedDate}"></span><br>
                 <span th:utext="${studentProfile.cgpa}"></span><br>
 
             </div>
@@ -43,9 +43,9 @@
                 <h2>Add/update Profile</h2>
                 <div class="form-group">
                     <div class="col-sm-9"> Name
-                        <label th:if="${#fields.hasErrors('HS_name')}" th:errors="*{HS_name}"
+                        <label th:if="${#fields.hasErrors('hsName')}" th:errors="*{hsName}"
                                class="validation-message"></label>
-                        <input type="text" th:field="*{HS_name}" placeholder="High School name"
+                        <input type="text" th:field="*{hsName}" placeholder="High School name"
                                class="form-control" />
                     </div>
                 </div>
@@ -67,9 +67,9 @@
 
                 <div class="form-group">
                     <div class="col-sm-9"> GED date
-                        <label	th:if="${#fields.hasErrors('graduation_GED_date')}" th:errors="*{graduation_GED_date}"
+                        <label	th:if="${#fields.hasErrors('graduationGedDate')}" th:errors="*{graduationGedDate}"
                                   class="validation-message"></label>
-                        <input type="text" th:field="*{graduation_GED_date}"
+                        <input type="text" th:field="*{graduationGedDate}"
                                placeholder="Graduation date for GED/HighSchool" class="form-control" />
                     </div>
                 </div>
@@ -83,9 +83,9 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9"> ACT:
-                        <input type="text" th:field="*{ACT_score}" placeholder="ACT score"
+                        <input type="text" th:field="*{actScore}" placeholder="ACT score"
                                class="form-control" /> <label
-                            th:if="${#fields.hasErrors('ACT_score')}" th:errors="*{ACT_score}"
+                            th:if="${#fields.hasErrors('actScore')}" th:errors="*{actScore}"
                             class="validation-message"></label>
                     </div>
                 </div>

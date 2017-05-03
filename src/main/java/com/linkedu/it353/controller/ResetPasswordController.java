@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.UUID;
 
 @Controller
-public class ResetPassword {
+public class ResetPasswordController {
 
 	@Autowired
     private UserService userService;

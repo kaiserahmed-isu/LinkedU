@@ -54,6 +54,7 @@ public class StudentRegistrationController {
             user.setHasProfile(0);
             userService.saveStudentUser(user);
 
+
             //given
             String recipient = user.getEmail();
             String subject = "Verify your email - LinkedU";

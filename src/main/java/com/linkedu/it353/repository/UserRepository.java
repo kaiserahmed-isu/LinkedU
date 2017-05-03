@@ -19,4 +19,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Integer countDistinctByRoles(Role role);
 
+    List<User> findAllByRoles(Role role);
+
+    List<User> findDistinctByStudentProfile_CgpaGreaterThanEqualAndStudentProfile_ActScoreGreaterThanEqualOrStudentProfile_HsNameLike(float cgpa, int act, String hsName);
+
 }
