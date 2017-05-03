@@ -208,7 +208,7 @@
             <ul class="list-group media-list media-list-stream">
 
                 <li class="media list-group-item p-a">
-                    <h4 class="m-t-0" style="color: #1C73A5">Current Balance: <span th:text="${balance.balanceAmount}"></span></h4>
+                    <h4 class="m-t-0" style="color: #1C73A5">Current Balance: <span th:text="${balance.balanceAmount}"></span> Credits</h4>
                     <a class="btn btn-primary btn-sm" th:href="@{'/recruiter/buycredit'}" >Buy More Credit</a>
                 </li>
                 <li class="media list-group-item p-a">
@@ -219,7 +219,7 @@
                             <label for="cgpa">Filter by - Minimum CGPA:</label>
                             <input type="text" class="form-control" id="cgpa" name="cgpa" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-left: 10px;">
                             <label for="act"> Minimun ACT Score:</label>
                             <input type="text" class="form-control" id="act" name="act" />
                         </div>
@@ -245,8 +245,8 @@
                             <td th:text="${student.firstName}"/>
                             <td th:text="${student.lastName}"/>
                             <td th:text="${student.studentProfile.hsName}"/>
-                            <td th:text="${student.studentProfile.actScore}"/>
                             <td th:text="${student.studentProfile.cgpa}"/>
+                            <td th:text="${student.studentProfile.actScore}"/>
 
                             <td  th:if="${balance.balanceAmount} == 0">
                                 <a class="btn btn-primary btn-block btn-sm" th:href="@{'/recruiter/buycredit'}" >Buy Credit to contact/schedule appointment</a>

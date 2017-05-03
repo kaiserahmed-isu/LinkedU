@@ -8,6 +8,7 @@ import com.linkedu.it353.mail.MailClient;
 import com.linkedu.it353.model.User;
 import com.linkedu.it353.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,9 @@ public class StudentRegistrationController {
 
     @Autowired
     private MailClient mailClient;
+
+    @Value("${siteroot.link}")
+    private static String SITE_ROOT_LINK;
 
     @RequestMapping(value="/registration-student", method = RequestMethod.GET)
     public ModelAndView registration(){
@@ -58,7 +62,7 @@ public class StudentRegistrationController {
             //given
             String recipient = user.getEmail();
             String subject = "Verify your email - LinkedU";
-            String message = "Thank you for registering as a student. Please click here http://localhost:8080/verifyStudent/"+uuid+" to verify your account. Thank you! - LinkedU";
+            String message = "Thank you for registering as a student. Please click here "+SITE_ROOT_LINK+"/verifyStudent/"+uuid+" to verify your account. Thank you! - LinkedU";
             //when
             mailClient.prepareAndSend(recipient, subject, message);
 
