@@ -73,7 +73,8 @@ public class UniversityProfileController {
             universityProfile.setUser_id(user.getId());//needs to be updated
             universityProfileService.addUniversity(universityProfile);
             System.out.println("in update");
-            modelAndView.setViewName("university/profile/home");
+            modelAndView.setViewName("redirect:/recruiter/home");
+//            modelAndView.setViewName("university/profile/home");
             //modelAndView.setViewName("redirect:/programupdate");
         }
         return modelAndView;
@@ -92,7 +93,11 @@ public class UniversityProfileController {
         ModelAndView modelAndView = new ModelAndView();
         List<UniversityProfile> universityProfiles = universityProfileService.searchProfile(universityProfile);
         modelAndView.addObject("universityProfiles",universityProfiles);
+
+        modelAndView.addObject("universityProfile",new UniversityProfile());
+
         modelAndView.setViewName("university/profile/searchresult");
         return modelAndView;
     }
 }
+
