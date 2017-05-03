@@ -1,0 +1,306 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+
+    <title>
+
+        LinkedU - Buy Credit Success
+
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{/assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link th:href="@{/assets/css/application.css}" rel="stylesheet">
+
+    <style>
+        #showcaseform {
+            margin-bottom: 5em;
+        }
+    </style>
+
+</head>
+<body class="with-top-navbar">
+<!--Top navigator-->
+<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">
+                <img th:src="@{/Image/logo.jpg}" alt="brand">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-main">
+
+            <ul class="nav navbar-nav hidden-xs">
+                <li>
+                    <a href="/recruiter/home">Home</a>
+                </li>
+                <!-- <li>
+                     <a href="profile/index.html">Profile</a>
+                 </li>
+                 <li>
+                     <a data-toggle="modal" href="#msgModal">Messages</a>
+                 </li>-->
+                <li  class="active">
+                    <a href="#">Search Students</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li></li>
+            </ul>
+
+            <!--Signup and login-->
+            <!--            <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="login/index.html">Login</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">As Student</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">As Recruiter</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>-->
+            <!--profile dropdown image-->
+            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                <li>
+                    <a class="app-notifications" href="notifications/index.html">
+                        <span class="icon icon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                        <img class="img-circle" th:src="${profileImage}" src="/assets/img/avatar-dhg.png">
+                    </button>
+                </li>
+            </ul>
+
+            <!-- <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                 <li>
+                     <a class="app-notifications" href="notifications/index.html">
+                         <span class="icon icon-bell"></span>
+                     </a>
+                 </li>
+                 <li>
+                     <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+
+                     </button>
+                 </li>
+             </ul>-->
+
+            <form class="navbar-form navbar-right app-search" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                <li><a href="#">Profile</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+
+            <!-- <ul class="nav navbar-nav navbar-right">
+                 <li>
+                 </li><li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                 <ul class="dropdown-menu">
+                 <ul class="dropdown-menu">
+                     <li>
+                         <a href="#">As Student</a>
+                     </li>
+                     <li class="divider">
+                     </li>
+                     <li>
+                         <a href="#">As Recruiter</a>
+                     </li>
+                 </ul>
+             </li>
+
+
+             </ul>
+
+
+
+
+             <ul class="nav navbar-nav">
+                 <li><a href="login/index.html">Login</a></li>
+             </ul>
+         </div>-->
+        </div>
+    </div>
+</nav>
+
+
+<div class="container p-t-md">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default panel-profile m-b-md">
+                <div class="panel-heading" style="background-image: url(/assets/img/iceland.jpg);"></div>
+                <div class="panel-body text-center">
+                    <a href="#" data-toggle="modal" data-target="#changeProfileImage">
+
+
+                        <img th:src="${profileImage}"
+                             class="panel-profile-img" alt="Add a profile picture"
+                        />
+
+
+                    </a>
+
+
+                    <h5 class="panel-title">
+                        <a class="text-inherit" href="#"><span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span></a>
+                    </h5>
+
+                    <p class="m-b-md"></p>
+
+                    <ul class="panel-menu">
+                        <li class="panel-menu-item">
+
+                        </li>
+
+                        <li class="panel-menu-item">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default visible-md-block visible-lg-block">
+                <div class="panel-body">
+                    <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
+                    <ul class="list-unstyled list-spaced">
+                        <li><span class="text-muted icon icon-calendar m-r"></span>Hello, <span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span>! </li>
+                        <li><span class="text-muted icon icon-github m-r"></span>Email : <span th:utext="${user.email}"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <ul class="list-group media-list media-list-stream">
+
+                <li class="media list-group-item p-a">
+                    <h3 class="m-t-0">Buy credit</h3>
+                </li>
+
+                <li class="media list-group-item p-a">
+
+                    <div class="media-body">
+                        <div class="media-body-text">
+
+
+                            <span class="successMessage" th:utext="${successMessage}"></span>
+                            <span class="successMessage" th:utext="${balance.balanceAmount}"></span><br/><br/>
+                            <span class="validation-message" th:utext="${messageError}"></span>
+                            <a th:href="@{/recruiter/search-student}" class="btn btn-md btn-warning " >Go back to student search page</a>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="changeProfileImage" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal">
+                                                <span aria-hidden="true">&times;</span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel2">
+                                                Upload profile picture
+                                            </h4>
+                                        </div>
+
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+
+                                            <form class="form-horizontal" method="POST" th:action="@{/student/home}" enctype="multipart/form-data" role="form">
+                                                <input type="hidden" name="type" value="Profile" />
+                                                <div class="form-group">
+                                                    <label class="btn btn-default btn-file col-md-4 col-md-offset-3">
+                                                        <input type="file" name="file"  style="">
+                                                    </label>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <!--<button type="button" class="btn btn-primary">-->
+                                            <!--Save changes-->
+                                            <!--</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- End Modal -->
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div><!-- End Container -->
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
+</body>
+</html>

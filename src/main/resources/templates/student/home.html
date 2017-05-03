@@ -177,10 +177,10 @@
                         <!--<small> <a href="#">Edit</a></small>-->
                     </h5>
                     <ul class="list-unstyled list-spaced">
-                        <li><span class="text-muted icon icon-book m-r"></span>Went to <span class="bold-text" th:utext="${studentProfile.HS_name}"></span></li>
-                        <li><span class="text-muted icon icon-calendar m-r"></span>Graduation Date: <span class="bold-text" th:text="${#dates.format(studentProfile.graduation_GED_date, 'dd-MMM-yyyy')}" ></span></li>
+                        <li><span class="text-muted icon icon-book m-r"></span>Went to <span class="bold-text" th:utext="${studentProfile.hsName}"></span></li>
+                        <li><span class="text-muted icon icon-calendar m-r"></span>Graduation Date: <span class="bold-text" th:text="${#dates.format(studentProfile.graduationGedDate, 'dd-MMM-yyyy')}" ></span></li>
                         <li><span class="text-muted icon icon-trophy m-r"></span>CGPA:  <span class="bold-text" th:utext="${studentProfile.cgpa}"></span></li>
-                        <li><span class="text-muted icon icon-star m-r"></span>ACT/GED:  <span class="bold-text" th:utext="${studentProfile.ACT_score}"></span></li>
+                        <li><span class="text-muted icon icon-star m-r"></span>ACT/GED:  <span class="bold-text" th:utext="${studentProfile.actScore}"></span></li>
                     </ul>
 
                 </li>

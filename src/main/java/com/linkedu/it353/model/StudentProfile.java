@@ -1,6 +1,5 @@
 package com.linkedu.it353.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,7 +20,8 @@ public class StudentProfile {
 	@Column(name="user_id")
 	private int userId;
 
-	private int ACT_score;
+	@Column(name = "actScore")
+	private int actScore;
 
 	private float cgpa;
 
@@ -31,12 +31,13 @@ public class StudentProfile {
 
 	private String ged;
 
+	@Column(name="graduationGedDate")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private Date graduation_GED_date;
+	private Date graduationGedDate;
 
-	@Column(name = "HS_name")
+	@Column(name = "hsName")
 	@NotEmpty(message = "*Please provide your high school name")
-	private String HS_name;
+	private String hsName;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="update_date")
@@ -65,12 +66,12 @@ public class StudentProfile {
 		this.userId = userId;
 	}
 
-	public int getACT_score() {
-		return this.ACT_score;
+	public int getActScore() {
+		return this.actScore;
 	}
 
-	public void setACT_score(int ACT_score) {
-		this.ACT_score = ACT_score;
+	public void setActScore(int actScore) {
+		this.actScore = actScore;
 	}
 
 	public float getCgpa() {
@@ -97,20 +98,20 @@ public class StudentProfile {
 		this.ged = ged;
 	}
 
-	public Date getGraduation_GED_date() {
-		return this.graduation_GED_date;
+	public Date getGraduationGedDate() {
+		return this.graduationGedDate;
 	}
 
-	public void setGraduation_GED_date(Date graduation_GED_date) {
-		this.graduation_GED_date = graduation_GED_date;
+	public void setGraduationGedDate(Date graduationGedDate) {
+		this.graduationGedDate = graduationGedDate;
 	}
 
-	public String getHS_name() {
-		return this.HS_name;
+	public String getHsName() {
+		return this.hsName;
 	}
 
-	public void setHS_name(String HS_name) {
-		this.HS_name = HS_name;
+	public void setHsName(String hsName) {
+		this.hsName = hsName;
 	}
 
 	public Date getUpdateDate() {

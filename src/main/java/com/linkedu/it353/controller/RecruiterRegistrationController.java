@@ -5,9 +5,12 @@ package com.linkedu.it353.controller;
  */
 
 import com.linkedu.it353.mail.MailClient;
+import com.linkedu.it353.model.Balance;
 import com.linkedu.it353.model.User;
+import com.linkedu.it353.service.BalanceService;
 import com.linkedu.it353.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,12 @@ public class RecruiterRegistrationController {
 
     @Autowired
     private MailClient mailClient;
+
+    @Autowired
+    private BalanceService balanceService;
+
+//    @Value("${siteroot.link}")
+//    private static String SITE_ROOT_LINK;
 
     @RequestMapping(value="/registration-recruiter", method = RequestMethod.GET)
     public ModelAndView registration(){
@@ -53,6 +62,12 @@ public class RecruiterRegistrationController {
             user.setEmailValid(0);
             user.setHasProfile(0);
             userService.saveRecruiterUser(user);
+
+            Balance balance = new Balance();
+            balance.setBalanceAmount(0);
+
+            balance.setUser(user);
+            balanceService.saveBalance(balance);
 
             //given
             String recipient = user.getEmail();

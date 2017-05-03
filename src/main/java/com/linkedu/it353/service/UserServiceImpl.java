@@ -82,4 +82,19 @@ public class UserServiceImpl implements UserService{
     public Integer countDistinctByRoles(Role role){
         return userRepository.countDistinctByRoles(role);
     }
+
+    @Override
+    public List<User> searchStudents(float cgpa, int act, String HS_name) {
+        return userRepository.findDistinctByStudentProfile_CgpaGreaterThanEqualAndStudentProfile_ActScoreGreaterThanEqualOrStudentProfile_HsNameLike(cgpa, act, HS_name);
+    }
+
+    @Override
+    public List<User> findAllByRole(Role role) {
+        return userRepository.findAllByRoles(role);
+    }
+
+    @Override
+    public User findUserById(int userId) {
+        return userRepository.findById(userId);
+    }
 }

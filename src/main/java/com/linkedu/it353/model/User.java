@@ -64,6 +64,14 @@ public class User {
     private Set<Role> roles;
 
 
+
+    @OneToOne(mappedBy = "user")
+    private StudentProfile studentProfile;
+
+    @OneToOne(mappedBy = "user")
+    private Balance balance;
+
+
     public int getId() {
         return id;
     }
@@ -152,4 +160,11 @@ public class User {
         this.validateCode = validateCode;
     }
 
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
 }

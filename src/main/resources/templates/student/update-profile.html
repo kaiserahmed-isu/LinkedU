@@ -224,11 +224,11 @@
                         <div class="form-group m-l-0">
                             <label for="highSchool" class="form-group col-md-4 ">
                                 Name of high school:
-                                <span th:if="${#fields.hasErrors('HS_name')}" th:errors="*{HS_name}"
+                                <span th:if="${#fields.hasErrors('hsName')}" th:errors="*{hsName}"
                                       class="validation-message"></span>
                             </label>
                             <div class="col-sm-7">
-                                <input id="highSchool" type="text" th:field="*{HS_name}" placeholder="High School name"
+                                <input id="highSchool" type="text" th:field="*{hsName}" placeholder="High School name"
                                        class="form-control" />
                             </div>
                         </div>
@@ -254,12 +254,12 @@
                         <div class="form-group m-l-0">
                             <label for="ged" class="form-group col-md-4 ">
                                 When did you graduate or got GED?
-                                <span th:if="${#fields.hasErrors('graduation_GED_date')}" th:errors="*{graduation_GED_date}"
+                                <span th:if="${#fields.hasErrors('graduationGedDate')}" th:errors="*{graduationGedDate}"
                                       class="validation-message"></span>
                             </label>
                             <div class="col-sm-7">
 
-                                <input type="text" id="graduation_GED_date" th:field="*{graduation_GED_date}"
+                                <input type="text" id="graduationGedDate" th:field="*{graduationGedDate}"
                                        placeholder="Graduation date for GED/HighSchool" class="form-control" />
                             </div>
                         </div>
@@ -275,13 +275,13 @@
                             </div>
                         </div>
                         <div class="form-group m-l-0">
-                            <label for="ACT_score" class="form-group col-md-4 ">
+                            <label for="actScore" class="form-group col-md-4 ">
                                 What is your ACT score?
-                                <span th:if="${#fields.hasErrors('ACT_score')}" th:errors="*{ACT_score}"
+                                <span th:if="${#fields.hasErrors('actScore')}" th:errors="*{actScore}"
                                       class="validation-message"></span>
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" th:field="*{ACT_score}" id="ACT_score" placeholder="ACT score"
+                                <input type="text" th:field="*{actScore}" id="actScore" placeholder="ACT score"
                                        class="form-control" />
                             </div>
                         </div>
