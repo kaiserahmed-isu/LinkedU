@@ -37,6 +37,6 @@ public class UniversityProfileService {
 
     public List<UniversityProfile> searchProfile(UniversityProfile universityProfile) {
         List<UniversityProfile> universityProfiles = new ArrayList<>();
-        return universityProfileRepository.findByUniversityNameAndCityAndStateAndZipIgnoreCase(universityProfile.getUniversityName(), universityProfile.getCity(), universityProfile.getState(), universityProfile.getZip());
+        return universityProfileRepository.findByUniversityNameAndCityAndStateAndZipIgnoreCase(universityProfile.getUniversity_name(), universityProfile.getCity(), universityProfile.getState(), universityProfile.getZip());
     }
 }

@@ -19,10 +19,6 @@ public class UniversityProgram {
 
     private Integer min_GPA, min_ACT;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn/*(name = "user_id")*/
-    private UniversityProfile universityProfile;
-
     public UniversityProgram() {
     }
 
@@ -31,7 +27,6 @@ public class UniversityProgram {
         this.program_name = program_name;
         this.min_GPA = min_GPA;
         this.min_ACT = min_ACT;
-        this.universityProfile = universityProfile;
     }
 
     public Integer getProgram_id() {
@@ -74,11 +69,4 @@ public class UniversityProgram {
         this.min_ACT = min_ACT;
     }
 
-    public UniversityProfile getUniversityProfile() {
-        return universityProfile;
-    }
-
-    public void setUniversityProfile(UniversityProfile universityProfile) {
-        this.universityProfile = universityProfile;
-    }
 }

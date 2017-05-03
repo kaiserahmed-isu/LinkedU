@@ -2,7 +2,6 @@ package com.linkedu.it353.model;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by sanket on 4/18/2017.
@@ -15,7 +14,7 @@ public class UniversityProfile {
     private Integer user_id;
 
     @Column(name = "university_name")
-    private String universityName;
+    private String university_name;
 
     @Column(name = "city")
     private String city;
@@ -38,16 +37,12 @@ public class UniversityProfile {
     @Column(name = "contact")
     private String contact;
 
-    @OneToMany(targetEntity = UniversityProgram.class, cascade = CascadeType.ALL, mappedBy = "universityProfile", fetch=FetchType.EAGER)
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "universityProfile", fetch=FetchType.EAGER)
-    private List universityProgramSet;
-
     public UniversityProfile() {
     }
 
-    public UniversityProfile(Integer user_id, String universityName, String city, String state, String address, String website, String terms, Integer zip, String contact, List<UniversityProgram> universityProgramSet) {
+    public UniversityProfile(Integer user_id, String university_name, String city, String state, String address, String website, String terms, Integer zip, String contact, List<UniversityProgram> universityProgramSet) {
         this.user_id = user_id;
-        this.universityName = universityName;
+        this.university_name = university_name;
         this.city = city;
         this.state = state;
         this.address = address;
@@ -55,7 +50,6 @@ public class UniversityProfile {
         this.terms = terms;
         this.zip = zip;
         this.contact = contact;
-        this.universityProgramSet = universityProgramSet;
     }
 
     public Integer getUser_id() {
@@ -66,12 +60,12 @@ public class UniversityProfile {
         this.user_id = user_id;
     }
 
-    public String getUniversityName() {
-        return universityName;
+    public String getUniversity_name() {
+        return university_name;
     }
 
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
+    public void setUniversity_name(String university_name) {
+        this.university_name = university_name;
     }
 
     public String getCity() {
@@ -130,11 +124,4 @@ public class UniversityProfile {
         this.contact = contact;
     }
 
-    public List<UniversityProgram> getUniversityProgramSet() {
-        return universityProgramSet;
-    }
-
-    public void setUniversityProgramSet(List<UniversityProgram> universityProgramSet) {
-        this.universityProgramSet = universityProgramSet;
-    }
 }

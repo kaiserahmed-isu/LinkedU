@@ -8,9 +8,10 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <meta name="author" content=""/>
+
     <title>
 
-        LinkedU
+        LinkedU - Search University
 
     </title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
@@ -23,34 +24,15 @@
 
     <link th:href="@{/assets/css/application.css}" rel="stylesheet">
 
-
     <style>
-        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
-        /* this chunk of css is not part of the toolkit :) */
-        body {
-            width: 1px;
-            min-width: 100%;
-            *width: 100%;
-        }
-
-        jumbotron {
-            color: black;
-            height: 500px;
-        }
-        .navbar-brand{
-            width: 3em;
-            margin-top: -0.5em;
+        #showcaseform {
+            margin-bottom: 5em;
         }
     </style>
 
 </head>
-
-
 <body class="with-top-navbar">
-
-
-<!-- <div class="growl" id="app-growl"></div>
--->
+<!--Top navigator-->
 <nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
     <div class="container">
         <div class="navbar-header">
@@ -61,27 +43,51 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">
-                <img th:src="@{Image/logo.jpg}" alt="brand">
+            <a class="navbar-brand" href="home.html">
+                <img th:src="@{/Image/logo.jpg}" alt="brand">
             </a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
             <ul class="nav navbar-nav hidden-xs">
-                <li class="active">
-                    <a href="index.html">Home</a>
-                </li>
                 <li>
-                    <a href="profile/index.html">Profile</a>
+                    <a href="/student/home">Home</a>
                 </li>
-                <li>
-                    <a data-toggle="modal" href="#msgModal">Messages</a>
-                </li>
-                <li>
-                    <a href="docs/index.html">Docs</a>
+                <!-- <li>
+                     <a href="profile/index.html">Profile</a>
+                 </li>
+                 <li>
+                     <a data-toggle="modal" href="#msgModal">Messages</a>
+                 </li>-->
+                <li  class="active">
+                    <a th:href="@{/university/search}">Search University</a>
                 </li>
             </ul>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li></li>
+            </ul>
+
+            <!--Signup and login-->
+            <!--            <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="login/index.html">Login</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">As Student</a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">As Recruiter</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>-->
+            <!--profile dropdown image-->
             <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
                 <li>
                     <a class="app-notifications" href="notifications/index.html">
@@ -90,10 +96,24 @@
                 </li>
                 <li>
                     <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
-                        <img class="img-circle" src="assets/img/avatar-dhg.png">
+                        <!--<img class="img-circle" th:src="${profileImage}" src="/assets/img/avatar-dhg.png">-->
+                        <img class="img-circle" th:src="@{/assets/img/avatar-dhg.png}">
                     </button>
                 </li>
             </ul>
+
+            <!-- <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                 <li>
+                     <a class="app-notifications" href="notifications/index.html">
+                         <span class="icon icon-bell"></span>
+                     </a>
+                 </li>
+                 <li>
+                     <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+
+                     </button>
+                 </li>
+             </ul>-->
 
             <form class="navbar-form navbar-right app-search" role="search">
                 <div class="form-group">
@@ -102,25 +122,89 @@
             </form>
 
             <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="profile/index.html">Profile</a></li>
-                <li><a href="notifications/index.html">Notifications</a></li>
-                <li><a href="login/index.html">Logout</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
             </ul>
 
-            <ul class="nav navbar-nav hidden">
-                <li><a href="login/index.html">Logout</a></li>
-            </ul>
+            <!-- <ul class="nav navbar-nav navbar-right">
+                 <li>
+                 </li><li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">SignUp<strong class="caret"></strong></a>
+                 <ul class="dropdown-menu">
+                 <ul class="dropdown-menu">
+                     <li>
+                         <a href="#">As Student</a>
+                     </li>
+                     <li class="divider">
+                     </li>
+                     <li>
+                         <a href="#">As Recruiter</a>
+                     </li>
+                 </ul>
+             </li>
+
+
+             </ul>
+
+
+
+
+             <ul class="nav navbar-nav">
+                 <li><a href="login/index.html">Login</a></li>
+             </ul>
+         </div>-->
         </div>
     </div>
 </nav>
 
+
 <div class="container p-t-md">
     <div class="row">
         <div class="col-md-3">
+            <div class="panel panel-default panel-profile m-b-md">
+                <div class="panel-heading" style="background-image: url(/assets/img/iceland.jpg);"></div>
+                <div class="panel-body text-center">
+                    <a href="#" data-toggle="modal" data-target="#changeProfileImage">
 
+
+                        <img th:src="${profileImage}"
+                             class="panel-profile-img" alt="Add a profile picture"
+                        />
+
+
+                    </a>
+
+
+                    <h5 class="panel-title">
+                        <a class="text-inherit" href="#"><span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span></a>
+                    </h5>
+
+                    <p class="m-b-md"></p>
+
+                    <ul class="panel-menu">
+                        <li class="panel-menu-item">
+
+                        </li>
+
+                        <li class="panel-menu-item">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default visible-md-block visible-lg-block">
+                <div class="panel-body">
+                    <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
+                    <ul class="list-unstyled list-spaced">
+                        <li><span class="text-muted icon icon-calendar m-r"></span>Hello, <span th:utext="${user.firstName}"></span> <span th:utext="${user.lastName}"></span>! </li>
+                        <li><span class="text-muted icon icon-github m-r"></span>Email : <span th:utext="${user.email}"></span></li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="">
                 <div class="media-body-text">
                     <div class="media-heading">
@@ -138,7 +222,7 @@
                             <p> Enter state: <input type="text" class="form-control" placeholder="State"
                                                     th:field="*{state}"></p>
                             <p> Enter Name: <input type="text" class="form-control" placeholder="Name"
-                                                   th:field="*{universityName}"></p>
+                                                   th:field="*{university_name}"></p>
                             <input type="submit" value="Search" class="btn-primary btn-pill col-lg-3"/>
                         </div>
                     </form>
@@ -146,42 +230,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <!--<ul class="list-group media-list media-list-stream">
-                <li class="media list-group-item p-a">
-                    <div class="media-body">
-                        <table class="table table-bordered table-hover">
-                            <tr>
-                                <th>University name</th>
-                                <th>Website</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>Programs offered</th>
-                            </tr>
-                            <tr th:each="profile:${universityProfiles}">
-                                <td
-                                        th:text="${profile.website}">
-                                </td>
-                                <td
-                                        th:text="${profile.city}">
-                                </td>
-                                <td
-                                        th:text="${profile.state}">
-                                </td>
-                            </tr>
-                            &lt;!&ndash;                                 <tr th:each="program:${universityProgram}">
-                                                                 <td th:text="${program.program_name}"></td>
-                                                                 <td><a href="#" th:text="${program.min_GPA}"></a></td>
-                                                                 <td th:text="${program.min_ACT}"></td>
-                                                             </tr>&ndash;&gt;
-                        </table>
-                    </div>
-                </li>
-            </ul>-->
-        </div>
 
-    </div>
 </div>
 <div data-role="footer" class="container-fluid panel-footer">
     <div class="row">
