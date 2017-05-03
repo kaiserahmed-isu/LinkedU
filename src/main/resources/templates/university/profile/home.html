@@ -215,12 +215,12 @@
                             <span class="bold-text" th:utext="${universityProfile.contact}"></span>
                         </li>
                         <li class="list-group-item">
-                            Contact:
+                            Terms:
                             <span class="bold-text" th:utext="${universityProfile.terms}"></span>
                         </li>
                         <li class="list-group-item">
                             Website:
-                            <a class="bold-text" th:href="@{${universityProfile.website}}">
+                            <a class="bold-text" th:href="${universityProfile.website}">
                             <span class="bold-text"
                                   th:utext="${universityProfile.website}">
                             </span>
