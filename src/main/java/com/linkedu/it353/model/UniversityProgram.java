@@ -8,25 +8,30 @@ import javax.persistence.*;
 @Entity
 @Table(name = "university_program")
 public class UniversityProgram {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer program_id;
 
-    @Column(name = "userid")
+    @Column(name = "user_id")
     private Integer user;
 
     private String program_name;
 
     private Integer min_GPA, min_ACT;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn/*(name = "user_id")*/
+    private UniversityProfile universityProfile;
+
     public UniversityProgram() {
     }
 
-    public UniversityProgram(Integer program_id, Integer user, String program_name, Integer min_GPA, Integer min_ACT) {
-        this.program_id = program_id;
+    public UniversityProgram(Integer user, String program_name, Integer min_GPA, Integer min_ACT, UniversityProfile universityProfile) {
         this.user = user;
         this.program_name = program_name;
         this.min_GPA = min_GPA;
         this.min_ACT = min_ACT;
+        this.universityProfile = universityProfile;
     }
 
     public Integer getProgram_id() {
@@ -67,5 +72,13 @@ public class UniversityProgram {
 
     public void setMin_ACT(Integer min_ACT) {
         this.min_ACT = min_ACT;
+    }
+
+    public UniversityProfile getUniversityProfile() {
+        return universityProfile;
+    }
+
+    public void setUniversityProfile(UniversityProfile universityProfile) {
+        this.universityProfile = universityProfile;
     }
 }

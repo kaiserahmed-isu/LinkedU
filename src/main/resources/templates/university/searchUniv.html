@@ -1,0 +1,202 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+    <title>
+
+        LinkedU
+
+    </title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link th:href="@{assets/css/toolkit.css}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link th:href="@{assets/css/application.css}" rel="stylesheet">
+
+
+    <style>
+        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+        /* this chunk of css is not part of the toolkit :) */
+        body {
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
+
+        jumbotron {
+            color: black;
+            height: 500px;
+        }
+    </style>
+
+</head>
+
+
+<body class="with-top-navbar">
+
+
+<!-- <div class="growl" id="app-growl"></div>
+-->
+<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="Image/logo.jpg" alt="brand">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-main">
+
+            <ul class="nav navbar-nav hidden-xs">
+                <li class="active">
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="profile/index.html">Profile</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" href="#msgModal">Messages</a>
+                </li>
+                <li>
+                    <a href="docs/index.html">Docs</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
+                <li>
+                    <a class="app-notifications" href="notifications/index.html">
+                        <span class="icon icon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+                        <img class="img-circle" src="assets/img/avatar-dhg.png">
+                    </button>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right app-search" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" data-action="grow" placeholder="Search">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile/index.html">Profile</a></li>
+                <li><a href="notifications/index.html">Notifications</a></li>
+                <li><a href="login/index.html">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav hidden">
+                <li><a href="login/index.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container p-t-md">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="">
+                <div class="media-body-text">
+                    <div class="media-heading">
+                        <h5>Search Universities: </h5>
+                    </div>
+
+                    <form autocomplete="off" id="searchform" action="#" th:action="@{/university/search}"
+                          th:object="${universityProfile}"
+                          method="post" role="form">
+                        <div>
+                            <p> Enter zipcode: <input type="text" class="form-control" placeholder="Zipcode"
+                                                      th:field="*{zip}"></p>
+                            <p> Enter city: <input type="text" class="form-control" placeholder="City"
+                                                   th:field="*{city}"></p>
+                            <p> Enter state: <input type="text" class="form-control" placeholder="State"
+                                                    th:field="*{state}"></p>
+                            <p> Enter Name: <input type="text" class="form-control" placeholder="Name"
+                                                   th:field="*{universityName}"></p>
+                            <input type="submit" value="Search" class="btn-primary btn-pill col-lg-3"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-role="footer" class="container-fluid panel-footer">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2">
+            <ul>
+                <li>
+                    <a th:href="@{/pages/aboutUs.html}">About Us</a>
+                </li>
+                <li>
+                    <a href="@{/page/contactUs.html}">Contact Us</a>
+                </li>
+                <li>
+                    <a href="@{/pages/terms.html}">Terms & Condition</a>
+                </li>
+                <li>
+                    <a href="@{/pages/policies.html}">Privacy Policy</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-2">
+
+            <a href="https://www.facebook.com/Linked-U-1673838479588563/"><i
+                    class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+            <a href="mailto:tinyshweta@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
+
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+
+
+</div>
+
+
+<script th:src="@{assets/js/jquery.min.js}"></script>
+<script th:src="@{assets/js/chart.js}"></script>
+<script th:src="@{assets/js/toolkit.js}"></script>
+<script th:src="@{assets/js/application.js}"></script>
+<script>
+    // execute/clear BS loaders for docs
+    $(function () {
+        if (window.BS && window.BS.loader && window.BS.loader.length) {
+            while (BS.loader.length) {
+                (BS.loader.pop())()
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+

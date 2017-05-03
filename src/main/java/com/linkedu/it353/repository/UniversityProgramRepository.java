@@ -13,4 +13,5 @@ import java.util.List;
 @Repository("UniversityProgramRepository")
 public interface UniversityProgramRepository extends JpaRepository<UniversityProgram,Integer> {
     List<UniversityProgram> findByUser(Integer user);
+
 }

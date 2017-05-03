@@ -34,4 +34,9 @@ public class UniversityProfileService {
     public void updateUniversity(Integer user_id, UniversityProfile universityProfile) {
         universityProfileRepository.save(universityProfile);
     }
+
+    public List<UniversityProfile> searchProfile(UniversityProfile universityProfile) {
+        List<UniversityProfile> universityProfiles = new ArrayList<>();
+        return universityProfileRepository.findByUniversityNameAndCityAndStateAndZipIgnoreCase(universityProfile.getUniversityName(), universityProfile.getCity(), universityProfile.getState(), universityProfile.getZip());
+    }
 }

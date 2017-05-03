@@ -1,49 +1,53 @@
 package com.linkedu.it353.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by sanket on 4/18/2017.
  */
+
 @Entity
 @Table(name = "university_profile")
 public class UniversityProfile {
     @Id
     private Integer user_id;
-    private String university_name;
+
+    @Column(name = "university_name")
+    private String universityName;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "website")
     private String website;
+
+    @Column(name = "terms")
     private String terms;
+
+    @Column(name = "zip")
     private Integer zip;
+
+    @Column(name = "contact")
     private String contact;
 
-    public Integer getZip() {
-        return zip;
-    }
-
-    public void setZip(Integer zip) {
-        this.zip = zip;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
+    @OneToMany(targetEntity = UniversityProgram.class, cascade = CascadeType.ALL, mappedBy = "universityProfile", fetch=FetchType.EAGER)
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "universityProfile", fetch=FetchType.EAGER)
+    private List universityProgramSet;
 
     public UniversityProfile() {
     }
 
-    public UniversityProfile(Integer user_id, String university_name, String city, String state, String address, String website, String terms, Integer zip, String contact) {
+    public UniversityProfile(Integer user_id, String universityName, String city, String state, String address, String website, String terms, Integer zip, String contact, List<UniversityProgram> universityProgramSet) {
         this.user_id = user_id;
-        this.university_name = university_name;
+        this.universityName = universityName;
         this.city = city;
         this.state = state;
         this.address = address;
@@ -51,6 +55,7 @@ public class UniversityProfile {
         this.terms = terms;
         this.zip = zip;
         this.contact = contact;
+        this.universityProgramSet = universityProgramSet;
     }
 
     public Integer getUser_id() {
@@ -61,12 +66,12 @@ public class UniversityProfile {
         this.user_id = user_id;
     }
 
-    public String getUniversity_name() {
-        return university_name;
+    public String getUniversityName() {
+        return universityName;
     }
 
-    public void setUniversity_name(String university_name) {
-        this.university_name = university_name;
+    public void setUniversityName(String universityName) {
+        this.universityName = universityName;
     }
 
     public String getCity() {
@@ -107,5 +112,29 @@ public class UniversityProfile {
 
     public void setTerms(String terms) {
         this.terms = terms;
+    }
+
+    public Integer getZip() {
+        return zip;
+    }
+
+    public void setZip(Integer zip) {
+        this.zip = zip;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public List<UniversityProgram> getUniversityProgramSet() {
+        return universityProgramSet;
+    }
+
+    public void setUniversityProgramSet(List<UniversityProgram> universityProgramSet) {
+        this.universityProgramSet = universityProgramSet;
     }
 }
