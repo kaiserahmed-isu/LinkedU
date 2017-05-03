@@ -17,12 +17,14 @@ public class UniversityProgram {
 
     private String program_name;
 
-    private Integer min_GPA, min_ACT;
+    private float min_GPA;
+
+    private Integer min_ACT;
 
     public UniversityProgram() {
     }
 
-    public UniversityProgram(Integer user, String program_name, Integer min_GPA, Integer min_ACT, UniversityProfile universityProfile) {
+    public UniversityProgram(Integer user, String program_name, float min_GPA, Integer min_ACT, UniversityProfile universityProfile) {
         this.user = user;
         this.program_name = program_name;
         this.min_GPA = min_GPA;
@@ -53,11 +55,11 @@ public class UniversityProgram {
         this.program_name = program_name;
     }
 
-    public Integer getMin_GPA() {
+    public float getMin_GPA() {
         return min_GPA;
     }
 
-    public void setMin_GPA(Integer min_GPA) {
+    public void setMin_GPA(float min_GPA) {
         this.min_GPA = min_GPA;
     }
 
