@@ -2,9 +2,11 @@ package com.linkedu.it353.controller;
 
 import com.linkedu.it353.model.UniversityProfile;
 import com.linkedu.it353.model.UniversityProgram;
+import com.linkedu.it353.model.UploadMaterials;
 import com.linkedu.it353.model.User;
 import com.linkedu.it353.service.UniversityProfileService;
 import com.linkedu.it353.service.UniversityProgramService;
+import com.linkedu.it353.service.UploadMaterialsService;
 import com.linkedu.it353.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,6 +35,9 @@ public class UniversityProfileController {
 
     @Autowired
     private UniversityProgramService universityProgramService;
+
+    @Autowired
+    private UploadMaterialsService uploadMaterialsService;
 
     @RequestMapping(value = "/universities", method = RequestMethod.GET)
     public ModelAndView getAllUniversities() {
@@ -93,6 +98,24 @@ public class UniversityProfileController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
+
+
+        List<UploadMaterials> uploadMaterialsNew = uploadMaterialsService.findByUserId(user.getId());
+        modelAndView.addObject("uploadMaterials", uploadMaterialsNew);
+
+        boolean profileImage = false;
+        for(UploadMaterials mat: uploadMaterialsNew){
+            if(mat.getType().equals("Profile")){
+                modelAndView.addObject("profileImage", "/image/"+mat.getFileName());
+                profileImage = true;
+
+            }
+
+        }
+        if (!profileImage) {
+            modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
+        }
+
         modelAndView.setViewName("university/profile/search");
         return modelAndView;
     }
@@ -108,6 +131,22 @@ public class UniversityProfileController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
+
+        List<UploadMaterials> uploadMaterialsNew = uploadMaterialsService.findByUserId(user.getId());
+        modelAndView.addObject("uploadMaterials", uploadMaterialsNew);
+
+        boolean profileImage = false;
+        for(UploadMaterials mat: uploadMaterialsNew){
+            if(mat.getType().equals("Profile")){
+                modelAndView.addObject("profileImage", "/image/"+mat.getFileName());
+                profileImage = true;
+
+            }
+
+        }
+        if (!profileImage) {
+            modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
+        }
 
         modelAndView.setViewName("university/profile/searchresult");
         return modelAndView;
@@ -126,6 +165,22 @@ public class UniversityProfileController {
 
         List<UniversityProgram> universityProgram = universityProgramService.getAllPrograms(userId);
         modelAndView.addObject("universityProgram", universityProgram);
+
+        List<UploadMaterials> uploadMaterialsNew = uploadMaterialsService.findByUserId(user.getId());
+        modelAndView.addObject("uploadMaterials", uploadMaterialsNew);
+
+        boolean profileImage = false;
+        for(UploadMaterials mat: uploadMaterialsNew){
+            if(mat.getType().equals("Profile")){
+                modelAndView.addObject("profileImage", "/image/"+mat.getFileName());
+                profileImage = true;
+
+            }
+
+        }
+        if (!profileImage) {
+            modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
+        }
 
         modelAndView.setViewName("university/profile/display");
         return modelAndView;
