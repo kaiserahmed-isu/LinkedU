@@ -33,8 +33,8 @@ public class RecruiterRegistrationController {
     @Autowired
     private BalanceService balanceService;
 
-//    @Value("${siteroot.link}")
-//    private static String SITE_ROOT_LINK;
+    @Value("${siteroot.link}")
+    private static String SITE_ROOT_LINK;
 
     @RequestMapping(value="/registration-recruiter", method = RequestMethod.GET)
     public ModelAndView registration(){
@@ -72,7 +72,7 @@ public class RecruiterRegistrationController {
             //given
             String recipient = user.getEmail();
             String subject = "Verify your email - LinkedU";
-            String message = "Thank you for registering as a recruiter. Please click here http://localhost:8080/verifyRecruiter/"+uuid+" to verify your account. Thank you! - LinkedU";
+            String message = "Thank you for registering as a recruiter. Please click here "+SITE_ROOT_LINK+"/verifyRecruiter/"+uuid+" to verify your account. Thank you! - LinkedU";
             //when
             mailClient.prepareAndSend(recipient, subject, message);
 
