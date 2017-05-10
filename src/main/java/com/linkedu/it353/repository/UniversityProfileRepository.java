@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by sanket on 4/18/2017.
+ * Created by sanket on 4/18/2017. did some changes
  */
 @Repository("university_profile")
 public interface UniversityProfileRepository extends JpaRepository<UniversityProfile, Integer> {
