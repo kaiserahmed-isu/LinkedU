@@ -20,7 +20,7 @@ public class StudentProfile {
 	@Column(name="user_id")
 	private int userId;
 
-	@Column(name = "actScore")
+	@Column(name = "ACT_score")
 	private int actScore;
 
 	private float cgpa;
@@ -31,11 +31,11 @@ public class StudentProfile {
 
 	private String ged;
 
-	@Column(name="graduationGedDate")
+	@Column(name="graduation_GED_date")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date graduationGedDate;
 
-	@Column(name = "hsName")
+	@Column(name = "HS_name")
 	@NotEmpty(message = "*Please provide your high school name")
 	private String hsName;
 
