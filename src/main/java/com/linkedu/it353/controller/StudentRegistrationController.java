@@ -28,8 +28,7 @@ public class StudentRegistrationController {
     @Autowired
     private MailClient mailClient;
 
-    @Value("${siteroot.link}")
-    private static String SITE_ROOT_LINK;
+    private static String SITE_ROOT_LINK = "https://linkedu.herokuapp.com";
 
     @RequestMapping(value="/registration-student", method = RequestMethod.GET)
     public ModelAndView registration(){

@@ -208,8 +208,17 @@ public class LoginController {
             }
 
             Showcase showcase = showcaseRepository.findFirstByPriority(1);
-            UniversityProfile showcaseUni = universityProfileService.getUniversity(showcase.getUniversity_id());
-            modelAndView.addObject("showcase", showcaseUni);
+            if(showcase == null){
+
+                UniversityProfile showcaseUni = new UniversityProfile();
+                modelAndView.addObject("showcase", showcaseUni);
+
+            } else {
+                UniversityProfile showcaseUni = universityProfileService.getUniversity(showcase.getUniversity_id());
+                modelAndView.addObject("showcase", showcaseUni);
+            }
+
+
 
 
             modelAndView.setViewName("student/home");
@@ -276,6 +285,8 @@ public class LoginController {
 
             modelAndView.addObject("user", user);
 
+
+
             if (studentProfile != null) {
                 modelAndView.addObject("studentProfile", studentProfile);
 
@@ -290,6 +301,20 @@ public class LoginController {
                 List<UploadMaterials> uploadMaterialsNew = uploadMaterialsService.findByUserId(user.getId());
                 modelAndView.addObject("uploadMaterials", uploadMaterialsNew);
 
+                boolean profileImage = false;
+                for(UploadMaterials mat: uploadMaterialsNew){
+                    if(mat.getType().equals("Profile")){
+                        modelAndView.addObject("profileImage", "/image/"+mat.getFileName());
+                        profileImage = true;
+
+                    }
+
+                }
+                if (!profileImage) {
+                    modelAndView.addObject("profileImage", "/assets/img/avatar-dhg.png");
+                }
+
+
                 modelAndView.setViewName("student/home");
             }
 
@@ -297,6 +322,11 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Showcase showcase = showcaseRepository.findFirstByPriority(1);
+        UniversityProfile showcaseUni = universityProfileService.getUniversity(showcase.getUniversity_id());
+        modelAndView.addObject("showcase", showcaseUni);
+
         modelAndView.setViewName("student/home");
         return modelAndView;
     }

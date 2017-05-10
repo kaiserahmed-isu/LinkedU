@@ -24,6 +24,8 @@ public class ResetPasswordController {
     
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private static String SITE_ROOT_LINK = "https://linkedu.herokuapp.com";
 	
 	@RequestMapping(value="/forget-password", method = RequestMethod.GET)
     public ModelAndView forgetPassword(){
@@ -49,7 +51,7 @@ public class ResetPasswordController {
             //given
             String recipient = user.getEmail();
             String subject = "Reset password - LinkedU";
-            String message = "Please click here http://localhost:8080/resetPassword/"+uuid+" . Thank you! - LinkedU";
+            String message = "Please click here "+SITE_ROOT_LINK+"/resetPassword/"+uuid+" . Thank you! - LinkedU";
             //when
             mailClient.prepareAndSend(recipient, subject, message);
 

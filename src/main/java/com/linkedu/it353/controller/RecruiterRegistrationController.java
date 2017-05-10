@@ -33,8 +33,7 @@ public class RecruiterRegistrationController {
     @Autowired
     private BalanceService balanceService;
 
-    @Value("${siteroot.link}")
-    private static String SITE_ROOT_LINK;
+    private static String SITE_ROOT_LINK = "https://linkedu.herokuapp.com";
 
     @RequestMapping(value="/registration-recruiter", method = RequestMethod.GET)
     public ModelAndView registration(){
