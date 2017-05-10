@@ -69,7 +69,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="index.html">
-                <img th:src="@{Image/logo.jpg}" alt="brand">
+                <img th:src="@{/Image/logo.jpg}" alt="brand">
             </a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapse-main">
@@ -122,7 +122,7 @@
             <div class="panel panel-default panel-profile m-b-md">
                 <div class="panel-heading" style="background-image: url(/assets/img/iceland.jpg);"></div>
                 <div class="panel-body text-center">
-                    <a href="profile/index.html">
+                    <a href="#">
                         <img
                                 class="panel-profile-img"
                                 src="/assets/img/avatar-dhg.png">
@@ -217,7 +217,7 @@
                     <!-- END NAV STEP-->
                     <!-- BEGIN STEP CONTAINER -->
                     <!-- END STEP CONTAINER -->
-                    <form autocomplete="off" action="#" th:action="@{/student/profile/step2}"
+                    <form autocomplete="on" action="#" th:action="@{/student/profile/step2}"
                           th:object="${studentActivity}" method="post" class="form-horizontal "
                           role="form">
                         <p>Please add any activities..</p>
